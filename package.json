@@ -1,0 +1,30 @@
+{
+  "name": "roo-code-setting",
+  "version": "1.0.0",
+  "description": "Optimized RooCode settings, rules, modes & skills — install with one command",
+  "bin": {
+    "roo-code-setting": "./bin/install.js"
+  },
+  "keywords": [
+    "roocode",
+    "roo-code",
+    "ai-coding",
+    "settings",
+    "optimization",
+    "rules",
+    "modes",
+    "skills"
+  ],
+  "author": "manhthien2005",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manhthien2005/roo_code_setting.git"
+  },
+  "files": [
+    "bin/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ]
+}

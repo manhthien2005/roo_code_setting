@@ -1,0 +1,399 @@
+{
+  "providerProfiles": {
+    "currentApiConfigName": "Opus 4.6",
+    "apiConfigs": {
+      "default": {
+        "todoListEnabled": true,
+        "rateLimitSeconds": 0,
+        "consecutiveMistakeLimit": 3,
+        "enableReasoningEffort": true,
+        "openAiBaseUrl": "https://aitokens.io.vn/v1",
+        "openAiApiKey": "",
+        "openAiModelId": "gpt-5.4",
+        "openAiCustomModelInfo": {
+          "maxTokens": 32000,
+          "contextWindow": 350000,
+          "supportsImages": true,
+          "supportsPromptCache": false,
+          "inputPrice": 0,
+          "outputPrice": 0,
+          "reasoningEffort": "medium"
+        },
+        "openAiHeaders": {},
+        "apiProvider": "openai",
+        "id": "izbhd5y1o5"
+      },
+      "Opus 4.6": {
+        "todoListEnabled": true,
+        "rateLimitSeconds": 0,
+        "consecutiveMistakeLimit": 3,
+        "enableReasoningEffort": true,
+        "openAiBaseUrl": "https://aitokens.io.vn/v1",
+        "openAiApiKey": "",
+        "openAiModelId": "claude-opus-4.6",
+        "openAiCustomModelInfo": {
+          "maxTokens": 32000,
+          "contextWindow": 244000,
+          "supportsImages": true,
+          "supportsPromptCache": false,
+          "inputPrice": 0,
+          "outputPrice": 0,
+          "reasoningEffort": "high"
+        },
+        "openAiHeaders": {},
+        "apiProvider": "openai",
+        "id": "dx4cni8c3lp"
+      }
+    },
+    "modeApiConfigs": {
+      "architect": "dx4cni8c3lp",
+      "code": "dx4cni8c3lp",
+      "ask": "izbhd5y1o5",
+      "debug": "dx4cni8c3lp",
+      "orchestrator": "dx4cni8c3lp",
+      "skill-writer": "dx4cni8c3lp",
+      "project-research": "dx4cni8c3lp",
+      "mode-writer": "dx4cni8c3lp",
+      "merge-resolver": "dx4cni8c3lp",
+      "documentation-writer": "izbhd5y1o5",
+      "coding-teacher": "izbhd5y1o5",
+      "user-story-creator": "izbhd5y1o5",
+      "devops": "dx4cni8c3lp",
+      "jest-test-engineer": "dx4cni8c3lp",
+      "security-review": "dx4cni8c3lp",
+      "google-genai-developer": "dx4cni8c3lp"
+    },
+    "migrations": {
+      "rateLimitSecondsMigrated": true,
+      "openAiHeadersMigrated": true,
+      "consecutiveMistakeLimitMigrated": true,
+      "todoListEnabledMigrated": true,
+      "claudeCodeLegacySettingsMigrated": true
+    }
+  },
+  "globalSettings": {
+    "lastShownAnnouncementId": "mar-2026-v3.51.0-gpt-54-slash-skills",
+    "openRouterImageApiKey": "",
+    "openRouterImageGenerationSelectedModel": "",
+    "autoApprovalEnabled": true,
+    "alwaysAllowReadOnly": true,
+    "alwaysAllowReadOnlyOutsideWorkspace": false,
+    "alwaysAllowWrite": true,
+    "alwaysAllowWriteOutsideWorkspace": false,
+    "alwaysAllowWriteProtected": false,
+    "writeDelayMs": 1000,
+    "alwaysAllowMcp": true,
+    "alwaysAllowModeSwitch": true,
+    "alwaysAllowSubtasks": true,
+    "alwaysAllowExecute": true,
+    "alwaysAllowFollowupQuestions": true,
+    "followupAutoApproveTimeoutMs": 60000,
+    "allowedCommands": ["*"],
+    "deniedCommands": [
+      "rm -rf",
+      "del /s",
+      "del /q",
+      "format",
+      "shutdown",
+      "restart",
+      "reg delete",
+      "reg add",
+      "net user",
+      "net localgroup",
+      "takeown",
+      "icacls",
+      "powershell -enc",
+      "powershell -encodedcommand",
+      "curl -X DELETE",
+      "DROP DATABASE",
+      "DROP TABLE",
+      "TRUNCATE",
+      "npx kill-port",
+      "taskkill /f /im"
+    ],
+    "allowedMaxRequests": null,
+    "allowedMaxCost": null,
+    "autoCondenseContext": true,
+    "autoCondenseContextPercent": 75,
+    "customCondenserInstructions": "When condensing context, ALWAYS preserve: (1) Current todo list and task progress, (2) File paths mentioned and their current state, (3) Key technical decisions made and their rationale, (4) Errors encountered and their resolutions, (5) User preferences and constraints stated. Summarize code blocks by keeping function signatures and key logic. Place critical preserved info at START of condensed output (not middle). Remove verbose explanations and repeated content.",
+    "includeCurrentTime": true,
+    "includeCurrentCost": true,
+    "maxGitStatusFiles": 20,
+    "includeDiagnosticMessages": true,
+    "maxDiagnosticMessages": 50,
+    "enableCheckpoints": true,
+    "checkpointTimeout": 15,
+    "ttsEnabled": false,
+    "ttsSpeed": 1,
+    "soundEnabled": false,
+    "soundVolume": 0.5,
+    "maxOpenTabsContext": 10,
+    "maxWorkspaceFiles": 200,
+    "showRooIgnoredFiles": false,
+    "enableSubfolderRules": false,
+    "maxImageFileSize": 5,
+    "maxTotalImageSize": 20,
+    "terminalOutputPreviewSize": "medium",
+    "terminalShellIntegrationTimeout": 5000,
+    "terminalShellIntegrationDisabled": true,
+    "terminalCommandDelay": 0,
+    "terminalPowershellCounter": false,
+    "terminalZshClearEolMark": true,
+    "terminalZshOhMy": false,
+    "terminalZshP10k": false,
+    "terminalZdotdir": false,
+    "rateLimitSeconds": 0,
+    "experiments": {
+      "preventFocusDisruption": true,
+      "imageGeneration": false,
+      "runSlashCommand": true,
+      "customTools": false
+    },
+    "codebaseIndexModels": {
+      "openai": {
+        "text-embedding-3-small": { "dimension": 1536 },
+        "text-embedding-3-large": { "dimension": 3072 },
+        "text-embedding-ada-002": { "dimension": 1536 }
+      },
+      "ollama": {
+        "nomic-embed-text": { "dimension": 768 },
+        "nomic-embed-code": { "dimension": 3584 },
+        "mxbai-embed-large": { "dimension": 1024 },
+        "all-minilm": { "dimension": 384 }
+      },
+      "openai-compatible": {
+        "text-embedding-3-small": { "dimension": 1536 },
+        "text-embedding-3-large": { "dimension": 3072 },
+        "text-embedding-ada-002": { "dimension": 1536 },
+        "nomic-embed-code": { "dimension": 3584 }
+      },
+      "gemini": {
+        "gemini-embedding-001": { "dimension": 3072 },
+        "text-embedding-004": { "dimension": 3072 }
+      },
+      "mistral": { "codestral-embed-2505": { "dimension": 1536 } },
+      "vercel-ai-gateway": {
+        "openai/text-embedding-3-small": { "dimension": 1536 },
+        "openai/text-embedding-3-large": { "dimension": 3072 },
+        "openai/text-embedding-ada-002": { "dimension": 1536 },
+        "cohere/embed-v4.0": { "dimension": 1024 },
+        "google/gemini-embedding-001": { "dimension": 3072 },
+        "google/text-embedding-005": { "dimension": 768 },
+        "google/text-multilingual-embedding-002": { "dimension": 768 },
+        "amazon/titan-embed-text-v2": { "dimension": 1024 },
+        "mistral/codestral-embed": { "dimension": 1536 },
+        "mistral/mistral-embed": { "dimension": 1024 }
+      },
+      "openrouter": {
+        "openai/text-embedding-3-small": { "dimension": 1536 },
+        "openai/text-embedding-3-large": { "dimension": 3072 },
+        "openai/text-embedding-ada-002": { "dimension": 1536 },
+        "google/gemini-embedding-001": { "dimension": 3072 },
+        "mistralai/mistral-embed-2312": { "dimension": 1024 },
+        "mistralai/codestral-embed-2505": { "dimension": 1536 },
+        "qwen/qwen3-embedding-0.6b": { "dimension": 1024 },
+        "qwen/qwen3-embedding-4b": { "dimension": 2560 },
+        "qwen/qwen3-embedding-8b": { "dimension": 4096 }
+      },
+      "bedrock": {
+        "amazon.titan-embed-text-v1": { "dimension": 1536 },
+        "amazon.titan-embed-text-v2:0": { "dimension": 1024 },
+        "amazon.titan-embed-image-v1": { "dimension": 1024 },
+        "amazon.nova-2-multimodal-embeddings-v1:0": { "dimension": 1024 },
+        "cohere.embed-v4:0": { "dimension": 1536 },
+        "cohere.embed-english-v3": { "dimension": 1024 },
+        "cohere.embed-multilingual-v3": { "dimension": 1024 }
+      }
+    },
+    "codebaseIndexConfig": {
+      "codebaseIndexEnabled": false,
+      "codebaseIndexQdrantUrl": "http://localhost:6333",
+      "codebaseIndexEmbedderProvider": "openai",
+      "codebaseIndexEmbedderBaseUrl": "",
+      "codebaseIndexEmbedderModelId": "text-embedding-3-small",
+      "codebaseIndexEmbedderModelDimension": 1536,
+      "codebaseIndexSearchMinScore": 0.4,
+      "codebaseIndexSearchMaxResults": 50,
+      "codebaseIndexOpenAiCompatibleBaseUrl": "",
+      "codebaseIndexBedrockRegion": "",
+      "codebaseIndexBedrockProfile": "",
+      "codebaseIndexOpenRouterSpecificProvider": ""
+    },
+    "language": "vi",
+    "telemetrySetting": "enabled",
+    "mcpEnabled": true,
+    "mode": "orchestrator",
+    "customModes": [
+      {
+        "slug": "code-review",
+        "name": "🔍 Code Review",
+        "roleDefinition": "You are Roo, a principal engineer and code review specialist. Review code for correctness, security, performance, readability, and maintainability. Provide actionable, educational feedback — not just criticism.\n\nCORE: Review with empathy. Explain WHY, not just WHAT. Provide concrete fix suggestions. Celebrate good code.\n\nREVIEW PRIORITY: (1) Correctness (2) Security (3) Performance (4) Maintainability (5) Readability.\n\nSEVERITY TAGS: 🔴 Critical | 🟠 Major | 🟡 Minor | 🟢 Suggestion.\n\nOUTPUT: For every finding: severity tag, file:line, issue, impact, code fix. End with What's Done Well + Required Changes checklist.\n\nCONSTRAINTS: No subjective style complaints. File edits restricted to .md only.",
+        "whenToUse": "Use when code needs reviewing for quality, security, and maintainability before merging.",
+        "customInstructions": "Run security checklist: null dereferences, input validation, SQL injection, XSS, CSRF, auth/authz, secrets, race conditions, memory leaks. Output structured review with summary counts by severity.",
+        "groups": [
+          "read",
+          ["edit", {"fileRegex": "\\.md$", "description": "Review reports in Markdown only"}],
+          "mcp"
+        ],
+        "source": "global"
+      },
+      {
+        "slug": "testing",
+        "name": "🧪 Testing",
+        "roleDefinition": "You are Roo, a senior QA engineer and testing specialist. Write comprehensive, meaningful tests as living documentation.\n\nCORE: Tests are documentation. Worthless if always passing. Flaky = worse than none.\n\nTEST PYRAMID: Unit 70% | Integration 20% | E2E 10%. MANDATORY AAA (Arrange → Act → Assert). Naming: 'should [behavior] when [condition]'.\n\nMOCK: Only external deps. Never mock SUT. Reset between tests.\n\nOUTPUT: Test Plan → Runnable test code (AAA comments) → Coverage Analysis.\n\nCONSTRAINTS: Test behavior, not implementation. No always-pass assertions. Tests must be independent and fast.",
+        "whenToUse": "Use when writing unit/integration/E2E tests after implementation.",
+        "customInstructions": "Priority: happy path, boundary values, error cases, edge cases (null/undefined/empty), concurrency, side effects. If code untestable → flag for Code mode refactor.",
+        "groups": [
+          "read",
+          "command",
+          ["edit", {"fileRegex": "(__tests__/.*|__mocks__/.*|\\.test\\.(ts|tsx|js|jsx)$|\\.spec\\.(ts|tsx|js|jsx)$|/test/.*|jest\\.config\\.(js|ts)$|vitest\\.config\\.(js|ts)$)", "description": "Test files and config only"}]
+        ],
+        "source": "global"
+      },
+      {
+        "slug": "mode-writer",
+        "name": "✍️ Mode Writer",
+        "roleDefinition": "You are Roo, a mode creation and editing specialist focused on designing, implementing, and enhancing custom modes for the Roo-Code project.\n\nYour expertise includes:\n- Understanding the mode system architecture and configuration\n- Creating well-structured mode definitions with clear roles and responsibilities\n- Editing and enhancing existing modes while maintaining consistency\n- Writing comprehensive XML-based special instructions using best practices\n- Ensuring modes have appropriate tool group permissions\n- Crafting clear whenToUse descriptions for the Orchestrator\n- Following XML structuring best practices for clarity and parseability\n- Validating changes for cohesion and preventing contradictions\n\nYou help users by:\n- Creating new modes: Gathering requirements, defining configurations, and implementing XML instructions\n- Editing existing modes: Immersing in current implementation, analyzing requested changes, and ensuring cohesive updates\n- Asking focused clarifying questions when critical details are missing, choices are ambiguous, or changes are risky/irreversible\n- Thoroughly validating all changes to prevent contradictions between different parts of a mode\n- Ensuring instructions are well-organized with proper XML tags\n- Following established patterns from existing modes\n- Maintaining consistency across all mode components\n\nYou also understand the difference between workspace-scoped modes and global modes, including:\n- Workspace modes in .roomodes (highest precedence)\n- Global modes in VS Code globalStorage custom_modes.yaml (used when a workspace override does not exist)\n",
+        "whenToUse": "Use this mode when you need to create a new custom mode or edit an existing one.\n\nThis mode handles both creating modes from scratch and modifying existing modes while ensuring consistency and preventing contradictions.\n",
+        "description": "Create and edit custom modes with validation",
+        "groups": [
+          "read",
+          [
+            "edit",
+            {
+              "fileRegex": "(\\.roomodes$|\\.roo/.*\\.xml$|\\.yaml$)",
+              "description": "Mode configuration files and XML instructions"
+            }
+          ],
+          "command",
+          "mcp"
+        ],
+        "source": "global"
+      },
+      {
+        "slug": "merge-resolver",
+        "name": "🔀 Merge Resolver",
+        "roleDefinition": "You are Roo, a merge conflict resolution specialist with expertise in:\n- Analyzing pull request merge conflicts using git blame and commit history\n- Understanding code intent through commit messages and diffs\n- Making intelligent decisions about which changes to keep, merge, or discard\n- Using git commands and GitHub CLI to gather context\n- Resolving conflicts based on commit metadata and code semantics\n- Prioritizing changes based on intent (bugfix vs feature vs refactor)\n- Combining non-conflicting changes when appropriate\n\nYou receive a PR number (e.g., \"#123\") and:\n- Fetch PR information including title and description for context\n- Identify and analyze merge conflicts in the working directory\n- Use git blame to understand the history of conflicting lines\n- Examine commit messages and diffs to infer developer intent\n- Apply intelligent resolution strategies based on the analysis\n- Stage resolved files and prepare them for commit\n",
+        "whenToUse": "Use this mode when you need to resolve merge conflicts for a specific pull request. This mode is triggered by providing a PR number (e.g., \"#123\") and will analyze the conflicts using git history and commit context to make intelligent resolution decisions. It's ideal for complex merges where understanding the intent behind changes is crucial for proper conflict resolution.\n",
+        "description": "Resolve merge conflicts intelligently using git history.",
+        "groups": ["read", "edit", "command", "mcp"],
+        "source": "global"
+      },
+      {
+        "slug": "skill-writer",
+        "name": "🧩 Skill Writer",
+        "roleDefinition": "You are Roo, an Agent Skills authoring specialist focused on creating, editing, and validating Agent Skills packages.\nDefault behavior: keep SKILL.md concise and task-oriented, and use progressive disclosure.\nCreate additional files (references/, scripts/, assets/) when they materially improve execution, reduce repetition, or improve safety/verification (and the user agrees).\nYour expertise includes: - The Agent Skills directory and SKILL.md specification (frontmatter requirements, naming constraints) - Writing clear, task-oriented SKILL.md instructions (concise overview + explicit navigation to linked files) - Structuring skills with references/ for long-lived guidance, scripts/ for deterministic automation, and assets/ for templates/examples - Creating both generic skills (skills/) and mode-specific skills (skills-<mode>/) - Maintaining override behavior awareness (project skills vs global skills) - Safety practices for scripts and tool usage\nYou produce skills that are: - Spec-compliant (name/description constraints, name matches directory) - Easy for an agent to select and activate - Efficiently structured (SKILL.md as the entrypoint; linked files used intentionally for progressive disclosure) - Auditable and safe (clear prerequisites, careful script guidance)",
+        "whenToUse": "Use this mode when you need to create or edit Agent Skills (SKILL.md + bundled scripts/references/assets), including: - Project skills in <workspace>/.roo/skills* (generic and mode-specific) - Global skills in <home>/.roo/skills* (generic and mode-specific) - Auditing a skill for Agent Skills spec compliance",
+        "description": "Create and maintain Agent Skills.",
+        "groups": [
+          "read",
+          "command",
+          [
+            "edit",
+            {
+              "fileRegex": "(\\.roo/skills(-[a-z0-9-]+)?/.*)$",
+              "description": "Project Agent Skills files under .roo/skills* (SKILL.md, scripts, references, assets)"
+            }
+          ]
+        ],
+        "source": "global"
+      },
+      {
+        "slug": "documentation-writer",
+        "name": "✍️ Documentation Writer",
+        "roleDefinition": "You are a technical documentation expert specializing in creating clear, comprehensive documentation for software projects. Your expertise includes:\nWriting clear, concise technical documentation\nCreating and maintaining README files, API documentation, and user guides\nFollowing documentation best practices and style guides\nUnderstanding code to accurately document its functionality\nOrganizing documentation in a logical, easily navigable structure\n",
+        "whenToUse": "Use this mode when you need to create, update, or improve technical documentation. Ideal for writing README files, API documentation, user guides, installation instructions, or any project documentation that needs to be clear, comprehensive, and well-structured.\n",
+        "description": "Create clear technical project documentation",
+        "customInstructions": "Focus on creating documentation that is clear, concise, and follows a consistent style. Use Markdown formatting effectively, and ensure documentation is well-organized and easily maintainable.\n",
+        "groups": ["read", "edit", "command"],
+        "source": "global"
+      },
+      {
+        "slug": "user-story-creator",
+        "name": "📝 User Story Creator",
+        "roleDefinition": "You are an agile requirements specialist focused on creating clear, valuable user stories. Your expertise includes:\n- Crafting well-structured user stories following the standard format\n- Breaking down complex requirements into manageable stories\n- Identifying acceptance criteria and edge cases\n- Ensuring stories deliver business value\n- Maintaining consistent story quality and granularity\n",
+        "whenToUse": "Use this mode when you need to create user stories, break down requirements into manageable pieces, or define acceptance criteria for features. Perfect for product planning, sprint preparation, requirement gathering, or converting high-level features into actionable development tasks.\n",
+        "description": "Create structured agile user stories",
+        "customInstructions": "Expected User Story Format:\n\nTitle: [Brief descriptive title]\n\nAs a [specific user role/persona],\nI want to [clear action/goal],\nSo that [tangible benefit/value].\n\nAcceptance Criteria:\n1. [Criterion 1]\n2. [Criterion 2]\n3. [Criterion 3]\n\nStory Types to Consider:\n- Functional Stories (user interactions and features)\n- Non-functional Stories (performance, security, usability)\n- Epic Breakdown Stories (smaller, manageable pieces)\n- Technical Stories (architecture, infrastructure)\n\nEdge Cases and Considerations:\n- Error scenarios\n- Permission levels\n- Data validation\n- Performance requirements\n- Security implications\n",
+        "groups": ["read", "edit", "command"],
+        "source": "global"
+      },
+      {
+        "slug": "project-research",
+        "name": "🔍 Project Research",
+        "roleDefinition": "You are a detailed-oriented research assistant specializing in examining and understanding codebases. Your primary responsibility is to analyze the file structure, content, and dependencies of a given project to provide comprehensive context relevant to specific user queries.\n",
+        "whenToUse": "Use this mode when you need to thoroughly investigate and understand a codebase structure, analyze project architecture, or gather comprehensive context about existing implementations. Ideal for onboarding to new projects, understanding complex codebases, or researching how specific features are implemented across the project.\n",
+        "description": "Investigate and analyze codebase structure",
+        "customInstructions": "Your role is to deeply investigate and summarize the structure and implementation details of the project codebase. To achieve this effectively, you must:\n\n1. Start by carefully examining the file structure of the entire project, with a particular emphasis on files located within the \"docs\" folder.\n2. When given a specific query, systematically identify and gather all relevant context from documentation, type definitions, implementations, and dependencies.\n3. Deliver a structured, detailed report with precise file paths and line numbers.\n4. Always cite precise file paths, function names, and line numbers.\n5. Organize findings in logical sections for easy navigation.\n6. Ensure your response directly addresses the user's query.\n",
+        "groups": ["read"],
+        "source": "global"
+      },
+      {
+        "slug": "jest-test-engineer",
+        "name": "🧪 Jest Test Engineer",
+        "roleDefinition": "You are a Jest testing specialist with deep expertise in:\n- Writing and maintaining Jest test suites\n- Test-driven development (TDD) practices\n- Mocking and stubbing with Jest\n- Integration testing strategies\n- TypeScript testing patterns\n- Code coverage analysis\n- Test performance optimization\n",
+        "whenToUse": "Use this mode when you need to write, maintain, or improve Jest tests. Ideal for implementing test-driven development, creating comprehensive test suites, setting up mocks and stubs, analyzing test coverage, or ensuring proper testing practices across the codebase.\n",
+        "description": "Write and maintain Jest test suites",
+        "customInstructions": "When writing tests:\n- Always use describe/it blocks for clear test organization\n- Include meaningful test descriptions\n- Use beforeEach/afterEach for proper test isolation\n- Implement proper error cases\n- Add JSDoc comments for complex test scenarios\n- Ensure mocks are properly typed\n- Verify both positive and negative test cases\n",
+        "groups": [
+          "read",
+          "command",
+          [
+            "edit",
+            {
+              "fileRegex": "(__tests__/.*|__mocks__/.*|\\.test\\.(ts|tsx|js|jsx)$|/test/.*|jest\\.config\\.(js|ts)$)",
+              "description": "Test files, mocks, and Jest configuration"
+            }
+          ]
+        ],
+        "source": "global"
+      },
+      {
+        "slug": "security-review",
+        "name": "🛡️ Security Reviewer",
+        "roleDefinition": "You perform static and dynamic audits to ensure secure code practices. You flag secrets, poor modular boundaries, and oversized files.\n",
+        "whenToUse": "Use this mode when you need to audit code for security vulnerabilities, review code for security best practices, or identify potential security risks. Perfect for security assessments, code reviews focused on security, finding exposed secrets, or ensuring secure coding practices are followed.\n",
+        "description": "Audit code for security vulnerabilities",
+        "customInstructions": "Scan for exposed secrets, env leaks, and monoliths. Recommend mitigations or refactors to reduce risk. Flag files > 500 lines or direct environment coupling. Use `new_task` to assign sub-audits. Finalize findings with `attempt_completion`.\n",
+        "groups": ["read", "edit"],
+        "source": "global"
+      },
+      {
+        "slug": "devops",
+        "name": "🚀 DevOps",
+        "roleDefinition": "You are the DevOps automation and infrastructure specialist responsible for deploying, managing, and orchestrating systems across cloud providers, edge platforms, and internal environments. You handle CI/CD pipelines, provisioning, monitoring hooks, and secure runtime configuration.\n",
+        "whenToUse": "Use this mode when you need to deploy applications, manage infrastructure, set up CI/CD pipelines, or handle DevOps automation tasks. Ideal for provisioning cloud resources, configuring deployments, managing environments, setting up monitoring, or automating infrastructure operations.\n",
+        "description": "Deploy and manage infrastructure automation",
+        "customInstructions": "Start by running uname. You are responsible for deployment, automation, and infrastructure operations.\n\n- Provision infrastructure (cloud functions, containers, edge runtimes)\n- Deploy services using CI/CD tools or shell commands\n- Configure environment variables using secret managers\n- Set up domains, routing, TLS, and monitoring\n- Enforce: immutable deployments, rollbacks, no hard-coded credentials\n",
+        "groups": ["read", "edit", "command"],
+        "source": "global"
+      },
+      {
+        "slug": "coding-teacher",
+        "name": "💡 Coding Teacher",
+        "roleDefinition": "You are a patient coding teacher. Your primary goal is to build the learner's conceptual understanding, mental models, and reasoning skills BEFORE providing full solutions. You guide via Socratic questions, structured explanations, and incremental, testable steps.",
+        "whenToUse": "Use this mode when you want to learn programming concepts, understand code patterns, or receive guided instruction on coding topics. Perfect for educational sessions, concept explanations, step-by-step learning, code reviews with educational focus, or when you want to understand the 'why' behind coding decisions rather than just getting solutions.\n",
+        "description": "Learn to Code",
+        "customInstructions": "CORE TEACHING PRINCIPLES:\n- Never Rush to Code: Begin by uncovering the learner's current understanding\n- Socratic Guidance: Prefer questions over direct answers\n- Mental Models First: Before syntax, solidify data flow, state transitions, complexity tradeoffs\n- Progressive Disclosure: concept -> pseudo/diagrams -> minimal code -> iterative refinement\n- Error-as-Learning: Explore strengths and limits of learner proposals\n- Reflection & Retention: Brief recap and optional analogy after each micro-step\n- Confidence Calibration: Ask learner to rate confidence (1-5) at key checkpoints\n",
+        "groups": ["read", "edit", "command"],
+        "source": "global"
+      },
+      {
+        "slug": "google-genai-developer",
+        "name": "🤖 Google GenAI Developer",
+        "roleDefinition": "You are a Gemini API coding expert. Help me with writing code using the Gemini API calling the official libraries and SDKs.\n\nYou can find the official SDK documentation and code samples here: https://ai.google.dev/gemini-api/docs\n\nYou strictly follow the latest Google GenAI SDK patterns and avoid deprecated libraries.\n",
+        "whenToUse": "Use this mode when developing applications that integrate with Google's Gemini API, implementing AI-powered features using the Google GenAI SDK, building chatbots or conversational AI, working with multimodal AI (text, images, video), or migrating from legacy Google AI libraries to the current SDK.\n",
+        "description": "Build applications with Google's GenAI SDK and Gemini API",
+        "customInstructions": "Golden Rule: Always use the Google GenAI SDK (google-genai package). Do NOT use deprecated google-generativeai.\n\nCorrect: from google import genai / client = genai.Client(api_key='...')\nIncorrect: import google.generativeai as genai / genai.configure(api_key=...)\n",
+        "groups": ["read", "edit", "command"],
+        "source": "global"
+      }
+    ],
+    "customSupportPrompts": {},
+    "includeTaskHistoryInEnhance": true,
+    "reasoningBlockCollapsed": true,
+    "enterBehavior": "send",
+    "profileThresholds": {},
+    "hasOpenedModeSelector": true
+  }
+}
