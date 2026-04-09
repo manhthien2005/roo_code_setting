@@ -7,37 +7,15 @@
 ### Always Active (all modes)
 | Skill | Trigger Condition | Mandatory? |
 |-------|------------------|------------|
-| `planning-with-files` | Complex multi-step tasks needing persistent progress | Optional |
-| `concise-planning` | When user asks for a plan for a coding task | Optional |
 | `lint-and-validate` | After EVERY code change (runs lint/type-check tools) | ✅ YES |
 | `systematic-debugging` | When encountering bugs, errors, or test failures | ✅ YES |
 | `verification-before-completion` | Before EVERY `attempt_completion` | ✅ YES |
 | `windows-shell-reliability` | Auto-trigger on Windows for command execution | ✅ Auto |
-| `find-skills` | When looking for new capabilities to install | Optional |
+| `planning-with-files` | Complex multi-step tasks needing persistent progress | Optional |
+| `concise-planning` | When user asks for a plan for a coding task | Optional |
 
 ### Mode-Specific Global Skills
-| Mode | Skill | Purpose |
-|------|-------|---------|
-| skill-writer | `writing-skills` | Create/update SKILL.md — Anthropic best practices |
-| skill-writer | `skill-check` | Validate against agentskills spec |
-| merge-resolver | `differential-review` | Security-focused PR/commit/diff review |
-| merge-resolver | `finishing-a-development-branch` | Verify tests → merge/PR/keep/discard |
-| documentation-writer | `api-documentation` | OpenAPI specs, developer guides |
-| documentation-writer | `readme` | Comprehensive README writing |
-| documentation-writer | `documentation-templates` | Structure + template reference |
-| user-story-creator | `product-manager` | PM frameworks, 32 SaaS metrics |
-| user-story-creator | `create-issue-gate` | Strict acceptance criteria gate |
-| project-research | `wiki-qa` | Quick evidence-based Q&A from source |
-| project-research | `wiki-researcher` | Deep 5-iteration architectural trace |
-| security-review | `cc-skill-security-review` | OWASP checklist + TS examples |
-| jest-test-engineer | `testing-patterns` | Jest factories, mocking strategies |
-| jest-test-engineer | `test-driven-development` | TDD Iron Law |
-| devops | `devops-troubleshooter` | Incident response, observability |
-| devops | `cicd-automation-workflow-automate` | GitHub Actions, pipeline setup |
-| devops | `secrets-management` | CI/CD secrets rotation, Vault |
-| coding-teacher | `tutorial-engineer` | Progressive disclosure, Bloom's taxonomy |
-| google-genai-developer | `gemini-api-dev` | Gemini API, SDK migration |
-| google-genai-developer | `ai-agent-development` | Multi-agent orchestration patterns |
+> 20 additional mode-specific skills are installed to `~/.roo/skills-{mode}/`. The agent discovers them automatically via SKILL.md frontmatter when the matching mode is active. See `skills-registry.md` or `.roo/rules/skill-awareness.md` in the project root for the full inventory.
 
 ## Project Skills (installed to <workspace>/.roo/)
 

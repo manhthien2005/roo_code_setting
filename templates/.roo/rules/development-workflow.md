@@ -49,7 +49,7 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 - Cache expensive computations; invalidate on relevant state changes.
 - Monitor bundle size — flag additions >50KB uncompressed.
 - Lazy load modules, routes, and heavy dependencies when possible.
-- Prefer `read_file` with `mode: "indentation"` over full file reads for token efficiency.
+- Prefer targeted line ranges with `read_file` over full file reads for token efficiency.
 - Minimize re-renders: memoize components, avoid inline object/function creation in JSX.
 
 ## HARD RULES

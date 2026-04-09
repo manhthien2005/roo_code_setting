@@ -1,10 +1,11 @@
 {
+  "$comment": "MCP Server Configuration Template — Replace ALL placeholder values before use.",
   "mcpServers": {
     "github": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "paste-your-github-token-here"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<REPLACE: your GitHub personal access token>"
       }
     },
     "postgres": {
@@ -12,7 +13,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-postgres",
-        "postgresql://user:password@localhost:5432/dbname"
+        "<REPLACE: postgresql://user:password@localhost:5432/dbname>"
       ],
       "env": {}
     },
@@ -21,7 +22,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/path/to/your/workspace"
+        "<REPLACE: /absolute/path/to/your/workspace>"
       ],
       "env": {}
     }

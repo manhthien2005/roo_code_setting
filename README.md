@@ -22,7 +22,7 @@ your-project/
 ├── .roomodes                          # Override 5 built-in modes
 ├── .rooignore                         # Filter noise from AI context
 ├── .roo/
-│   ├── rules/                         # 9 global rules (all modes)
+│   ├── rules/                         # 10 global rules (all modes)
 │   │   ├── core-principles.md
 │   │   ├── development-workflow.md
 │   │   ├── error-recovery.md
@@ -31,7 +31,8 @@ your-project/
 │   │   ├── performance-optimization.md
 │   │   ├── reasoning-optimization.md
 │   │   ├── security-first.md
-│   │   └── skill-awareness.md
+│   │   ├── skill-awareness.md
+│   │   └── definition-of-done.md
 │   ├── rules-architect/               # Architect mode rules
 │   │   └── planning-discipline.md
 │   ├── rules-code/                    # Code mode rules
@@ -101,16 +102,16 @@ Import via: **RooCode → ⚙️ → Import Settings**
 | `maxTokens` | 32,000 | Prevent output truncation |
 | `autoCondenseContext` | 70% | Auto-compress before overflow |
 | `enableCheckpoints` | true | Restore points for long tasks |
-| `deniedCommands` | 29 blocked | Prevent `rm -rf`, `DROP TABLE`, etc. |
+| `deniedCommands` | 49 blocked | Prevent `rm -rf`, `Remove-Item -Recurse`, `DROP TABLE`, etc. |
 | `maxOpenTabsContext` | 10 | Reduce noise in context |
 | `consecutiveMistakeLimit` | 3 | Stop infinite error loops |
-| `writeDelayMs` | 500 | Review time before file writes |
+| `writeDelayMs` | 1000 | Review time before file writes |
 
 > ⚠️ **You MUST customize**: Add your API key to `openAiApiKey` and adjust `openAiBaseUrl` to your provider.
 
 ### 2. Rules (`.roo/rules/`)
 
-18 rule files auto-inject into every AI message (~3.4K tokens = 1.4% of context):
+19 rule files auto-inject into every AI message (~3.6K tokens = 1.5% of context):
 
 | Rule | What It Enforces |
 |------|-----------------|
@@ -130,8 +131,9 @@ Import via: **RooCode → ⚙️ → Import Settings**
 | **Security Checklist** | OWASP top 10, secret scanning (Security Review mode) |
 | **Testing Standards** | Coverage targets, test naming, mocking rules (Testing mode) |
 | **Review Discipline** | PR checklist, severity classification (Code Review mode) |
-| **Orchestration Protocol** | Task decomposition, delegation rules (Orchestrator mode) |
+| **Orchestration Protocol** | Task decomposition, delegation, subtask failure policy (Orchestrator mode) |
 | **Operations Discipline** | Infra-as-code, rollback policy (DevOps mode) |
+| **Definition of Done** | Universal completion checklist + mode-specific exit gates |
 
 ### 3. Mode Overrides (`.roomodes`)
 
@@ -204,10 +206,10 @@ See [Getting Started — Global Skills](docs/getting-started.md#global-skills-op
 
 | Component | Tokens/message | % of 244K context |
 |-----------|---------------|-------------------|
-| Rules (all modes) | ~3,400 | 1.4% |
-| .roomodes roleDefinition | ~1,000 | 0.4% |
+| Rules (all modes) | ~3,600 | 1.5% |
+| .roomodes roleDefinition | ~1,200 | 0.5% |
 | customInstructions | ~500 | 0.2% |
-| **Total overhead** | **~5,000** | **2.0%** |
+| **Total overhead** | **~5,300** | **2.2%** |
 
 ## 🏗️ Architecture
 
