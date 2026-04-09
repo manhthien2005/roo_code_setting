@@ -11,3 +11,6 @@ temp-awesome-skills/
 
 # Research/temp repos
 temp-*/
+
+# Internal planning/research (dev only)
+plans/
