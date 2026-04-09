@@ -3,6 +3,14 @@
 ## Mandatory Phases (from ECC)
 Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 
+### Phase 0: Research & Reuse
+- Search existing codebase with `codebase_search` for similar implementations.
+- Check `package.json` / dependency files for existing utilities.
+- Look for ≥80% match solutions — adapt rather than recreate.
+- Prefer proven, tested approaches over novel implementations.
+- Document findings: "Searched [X] → Found [Y] / No match found."
+- **Quality gate**: Evidence of search performed before writing new code.
+
 ### Phase 1: Plan
 - Restate requirements in your own words.
 - Identify affected files, dependencies, and risks.
@@ -32,8 +40,17 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 |-----------|----------------|
 | Trivial (typo, config) | Phase 2 + 3 |
 | Small (single file fix) | Phase 2 + 3 + 4 |
-| Medium (feature, multi-file) | All 4 phases |
-| Large (architecture change) | All 4 + Architect mode first |
+| Medium (feature, multi-file) | Phase 0 + All 4 phases |
+| Large (architecture change) | Phase 0 + All 4 + Architect mode first |
+
+## Performance Rules
+- Avoid N+1 queries — batch database operations where possible.
+- Prefer pagination for large datasets; never load unbounded collections.
+- Cache expensive computations; invalidate on relevant state changes.
+- Monitor bundle size — flag additions >50KB uncompressed.
+- Lazy load modules, routes, and heavy dependencies when possible.
+- Prefer `read_file` with `mode: "indentation"` over full file reads for token efficiency.
+- Minimize re-renders: memoize components, avoid inline object/function creation in JSX.
 
 ## Hard Rules
 - NEVER skip Phase 3 (Verify). Every change gets validated.

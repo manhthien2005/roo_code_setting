@@ -2,3 +2,12 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+temp-awesome-skills/
+
+# Workspace-only dev config (not part of package)
+.roo/
+.rooignore
+.roomodes
+
+# Research/temp repos
+temp-*/

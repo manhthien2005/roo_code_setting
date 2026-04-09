@@ -1,0 +1,8 @@
+{
+  "slug": "{mode-slug}",
+  "name": "{emoji} {Mode Name}",
+  "roleDefinition": "{Detailed role description — who is the agent in this mode?}",
+  "whenToUse": "{When should user/orchestrator switch to this mode?}",
+  "customInstructions": "{Mode-specific behavioral instructions}",
+  "groups": ["read"]
+}
