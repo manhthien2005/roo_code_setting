@@ -60,7 +60,9 @@ your-project/
 │       │   └── SKILL.md
 │       ├── project-context/
 │       │   └── SKILL.md
-│       └── search-first/
+│       ├── search-first/
+│       │   └── SKILL.md
+│       └── workspace-audit/
 │           └── SKILL.md
 └── roo-code-settings-optimized.json   # Import-ready settings
 ```

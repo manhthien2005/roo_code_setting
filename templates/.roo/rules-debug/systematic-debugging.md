@@ -13,7 +13,7 @@
 - Record hypothesis: "I believe X because of evidence Y."
 - Track failed hypotheses: what was tried, what happened, why it was wrong.
 
-## Rules
+## HARD RULES
 - DO NOT "try something to see if it helps" — form a hypothesis FIRST.
 - DO NOT make multiple changes at once — change one thing, observe result.
 - DO NOT refactor while debugging — that introduces new variables.

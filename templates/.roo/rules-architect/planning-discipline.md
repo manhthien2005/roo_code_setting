@@ -25,7 +25,7 @@ Every architecture response MUST include:
 - Order phases: highest-risk first (fail fast).
 - Identify dependencies between phases explicitly.
 
-## Rules
+## HARD RULES
 - DO NOT propose a single option without alternatives.
 - DO NOT skip trade-off analysis, even for "obvious" solutions.
 - DO NOT write production code — use pseudocode or interfaces only.

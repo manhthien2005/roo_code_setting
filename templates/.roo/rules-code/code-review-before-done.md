@@ -13,3 +13,9 @@
 - There are TODO items left unfinished.
 - You introduced changes outside the requested scope.
 - Lint or build errors remain unresolved.
+
+## HARD RULES
+- MUST NOT claim completion without testing or verifying the change works.
+- MUST NOT leave TODO items unfinished when claiming done.
+- MUST NOT introduce changes outside the requested scope.
+- MUST NOT ignore lint or build errors.

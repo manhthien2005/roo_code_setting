@@ -19,7 +19,7 @@ When switching modes via `new_task` or `switch_mode`, pass structured context:
 - **Code → Debug**: Pass error message, stack trace, steps to reproduce, what was tried. Expect: root cause.
 - **Any → Ask**: Pass specific question with 2-4 suggested answers. Expect: user's decision.
 
-## Hard Rules
+## HARD RULES
 - NEVER switch modes without passing context. The target mode needs information.
 - ALWAYS include what was already tried when switching to Debug mode.
 - Architect mode MUST wait for user confirmation before passing to Code mode.

@@ -1,6 +1,9 @@
 ---
 name: context-checkpoint
 description: Save progress to a markdown file when context grows large or after many tool calls, preserving key decisions and state for continuity.
+risk: safe
+source: self
+tags: [context, checkpoint, persistence]
 ---
 
 # Context Checkpoint

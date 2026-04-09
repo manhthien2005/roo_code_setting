@@ -32,7 +32,7 @@
 - [ ] Am I changing more than was asked? (scope creep)
 - [ ] Build/compile passes without errors?
 
-## Hard Rules
+## HARD RULES
 - DO NOT refactor outside the scope of the current task.
 - DO NOT introduce new dependencies without explicit approval.
 - DO NOT skip error handling to "keep it simple."
