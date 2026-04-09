@@ -132,6 +132,21 @@ From 24 failure memories:
 - Implications of success
 - ANY communication suggesting completion/correctness
 
+## Pre-flight Rule Compliance Checklist
+
+Before `attempt_completion`, verify these rules were followed:
+
+| Rule File | Quick Check |
+|-----------|-------------|
+| `core-principles.md` | Did I read code before editing? Did I verify changes? |
+| `development-workflow.md` | Did I follow the right phases for this task size? |
+| `security-first.md` | No hardcoded secrets? Inputs validated? |
+| `git-workflow.md` | Conventional commit format? No debug artifacts? |
+| `error-recovery.md` | Did I ask when uncertain? Confidence level stated? |
+| `performance-optimization.md` | Efficient file reads? Context lean? |
+
+If ANY check fails → fix before claiming completion.
+
 ## The Bottom Line
 
 **No shortcuts for verification.**

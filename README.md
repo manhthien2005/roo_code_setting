@@ -22,12 +22,14 @@ your-project/
 ├── .roomodes                          # Override 5 built-in modes
 ├── .rooignore                         # Filter noise from AI context
 ├── .roo/
-│   ├── rules/                         # 8 global rules (all modes)
+│   ├── rules/                         # 9 global rules (all modes)
 │   │   ├── core-principles.md
 │   │   ├── development-workflow.md
 │   │   ├── error-recovery.md
 │   │   ├── git-workflow.md
 │   │   ├── mode-collaboration.md
+│   │   ├── performance-optimization.md
+│   │   ├── reasoning-optimization.md
 │   │   ├── security-first.md
 │   │   └── skill-awareness.md
 │   ├── rules-architect/               # Architect mode rules
@@ -35,8 +37,18 @@ your-project/
 │   ├── rules-code/                    # Code mode rules
 │   │   ├── coding-standards.md
 │   │   └── code-review-before-done.md
+│   ├── rules-code-review/             # Code Review mode rules
+│   │   └── review-discipline.md
 │   ├── rules-debug/                   # Debug mode rules
 │   │   └── systematic-debugging.md
+│   ├── rules-devops/                  # DevOps mode rules
+│   │   └── operations-discipline.md
+│   ├── rules-orchestrator/            # Orchestrator mode rules
+│   │   └── orchestration-protocol.md
+│   ├── rules-security-review/         # Security Review mode rules
+│   │   └── security-checklist.md
+│   ├── rules-testing/                 # Testing mode rules
+│   │   └── testing-standards.md
 │   └── skills/                        # Project-specific skills
 │       ├── coding-standards/
 │       │   └── SKILL.md
@@ -96,7 +108,7 @@ Import via: **RooCode → ⚙️ → Import Settings**
 
 ### 2. Rules (`.roo/rules/`)
 
-11 rule files auto-inject into every AI message (~3.4K tokens = 1.4% of context):
+18 rule files auto-inject into every AI message (~3.4K tokens = 1.4% of context):
 
 | Rule | What It Enforces |
 |------|-----------------|
@@ -105,12 +117,19 @@ Import via: **RooCode → ⚙️ → Import Settings**
 | **Error Recovery** | 3-attempt rule, escalation triggers, conflict resolution |
 | **Git Workflow** | Conventional commits, branch naming, PR discipline |
 | **Mode Collaboration** | When/how to switch modes, handoff format |
+| **Performance Optimization** | Token efficiency, lazy loading, N+1 prevention |
+| **Reasoning Optimization** | Extended thinking, effort calibration per task type |
 | **Security First** | No SQL injection, XSS, hardcoded credentials |
 | **Skill Awareness** | Which skills trigger when |
 | **Planning Discipline** | ≥2 alternatives, risk assessment (Architect mode) |
 | **Coding Standards** | TypeScript rules, size limits, self-review checklist (Code mode) |
 | **Code Review Before Done** | Mandatory verification before completion (Code mode) |
 | **Systematic Debugging** | 5-phase scientific method (Debug mode) |
+| **Security Checklist** | OWASP top 10, secret scanning (Security Review mode) |
+| **Testing Standards** | Coverage targets, test naming, mocking rules (Testing mode) |
+| **Review Discipline** | PR checklist, severity classification (Code Review mode) |
+| **Orchestration Protocol** | Task decomposition, delegation rules (Orchestrator mode) |
+| **Operations Discipline** | Infra-as-code, rollback policy (DevOps mode) |
 
 ### 3. Mode Overrides (`.roomodes`)
 

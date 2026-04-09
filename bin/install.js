@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const { copyDirSync, removeDirSync, GLOBAL_SKILL_MAP, findOrphanSkills, cleanOrphanSkills } = require('../lib/installer');
 
 // ─── Colors ───
 const red = (t) => `\x1b[31m${t}\x1b[0m`;
@@ -21,6 +22,14 @@ const args = process.argv.slice(2);
 const forceMode = args.includes('--force') || args.includes('-f');
 const globalSkillsMode = args.includes('--global-skills');
 const mcpMode = args.includes('--mcp');
+const dryRunMode = args.includes('--dry-run');
+
+// ─── Version ───
+if (args.includes('--version') || args.includes('-v')) {
+  const pkg = require(path.join(__dirname, '..', 'package.json'));
+  console.log(pkg.version);
+  process.exit(0);
+}
 
 // ─── Help ───
 if (args.includes('--help') || args.includes('-h')) {
@@ -31,6 +40,9 @@ if (args.includes('--help') || args.includes('-h')) {
   console.log('  --force, -f        Overwrite existing files');
   console.log('  --global-skills    Install 26 curated global skills to ~/.roo/');
   console.log('  --mcp              Install MCP server config (.roo/mcp.json)');
+  console.log('  --clean            Detect orphan global skills (use with --force to remove)');
+  console.log('  --dry-run          Preview changes without writing files');
+  console.log('  --version, -v      Print version number');
   console.log('  --help, -h         Show this help message');
   console.log('');
   console.log('Examples:');
@@ -38,62 +50,45 @@ if (args.includes('--help') || args.includes('-h')) {
   console.log(dim('  npx roo-code-setting --global-skills           # Install project + global skills'));
   console.log(dim('  npx roo-code-setting --global-skills --mcp     # Full install with MCP config'));
   console.log(dim('  npx roo-code-setting --global-skills --force   # Overwrite all existing files'));
+  console.log(dim('  npx roo-code-setting --clean                   # List orphan skills'));
+  console.log(dim('  npx roo-code-setting --clean --force           # Remove orphan skills'));
+  console.log(dim('  npx roo-code-setting --dry-run                 # Preview what would be installed'));
   console.log('');
   process.exit(0);
 }
 
-// ─── Global Skill Map (26 skills across 11 buckets) ───
-const globalSkillMap = {
-  'skills': [
-    'planning-with-files', 'concise-planning', 'lint-and-validate',
-    'systematic-debugging', 'verification-before-completion', 'windows-shell-reliability'
-  ],
-  'skills-skill-writer': ['writing-skills', 'skill-check'],
-  'skills-merge-resolver': ['differential-review', 'finishing-a-development-branch'],
-  'skills-documentation-writer': ['api-documentation', 'readme', 'documentation-templates'],
-  'skills-user-story-creator': ['product-manager', 'create-issue-gate'],
-  'skills-project-research': ['wiki-qa', 'wiki-researcher'],
-  'skills-security-review': ['cc-skill-security-review'],
-  'skills-jest-test-engineer': ['testing-patterns', 'test-driven-development'],
-  'skills-devops': ['devops-troubleshooter', 'cicd-automation-workflow-automate', 'secrets-management'],
-  'skills-coding-teacher': ['tutorial-engineer'],
-  'skills-google-genai-developer': ['gemini-api-dev', 'ai-agent-development']
-};
+// ─── Clean Mode ───
+const cleanMode = args.includes('--clean');
 
-// ─── Helpers ───
+if (cleanMode) {
+  const homeRooDir = path.join(os.homedir(), '.roo');
 
-/**
- * Recursively copy a directory from src to dest.
- * @param {string} src - Source directory path
- * @param {string} dest - Destination directory path
- */
-function copyDirSync(src, dest) {
-  fs.mkdirSync(dest, { recursive: true });
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-  for (const entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-    if (entry.isDirectory()) {
-      copyDirSync(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
-    }
+  console.log('');
+  console.log(bold('🧹 Cleaning orphan skills'));
+  console.log('');
+
+  const orphans = findOrphanSkills(homeRooDir);
+
+  if (orphans.length === 0) {
+    console.log(green('  No orphan skills found.'));
+    console.log('');
+    process.exit(0);
   }
-}
 
-/**
- * Recursively remove a directory (rm -rf equivalent).
- * @param {string} dirPath - Directory to remove
- */
-function removeDirSync(dirPath) {
-  if (!fs.existsSync(dirPath)) return;
-  // Node 14.14+ supports fs.rmSync
-  if (typeof fs.rmSync === 'function') {
-    fs.rmSync(dirPath, { recursive: true, force: true });
+  for (var i = 0; i < orphans.length; i++) {
+    console.log(yellow('  Would remove: ' + orphans[i]));
+  }
+  console.log('');
+
+  if (forceMode) {
+    var result = cleanOrphanSkills(homeRooDir, { force: true });
+    console.log(green('  Removed ' + result.removed.length + ' orphan skill(s).'));
   } else {
-    // Fallback for older Node
-    fs.rmdirSync(dirPath, { recursive: true });
+    console.log(dim('  Use --clean --force to actually remove'));
   }
+
+  console.log('');
+  process.exit(0);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -126,6 +121,11 @@ const fileMap = [
   { src: '.roo/rules-code/coding-standards.md', dest: '.roo/rules-code/coding-standards.md' },
   { src: '.roo/rules-code/code-review-before-done.md', dest: '.roo/rules-code/code-review-before-done.md' },
   { src: '.roo/rules-debug/systematic-debugging.md', dest: '.roo/rules-debug/systematic-debugging.md' },
+  { src: '.roo/rules-security-review/security-checklist.md', dest: '.roo/rules-security-review/security-checklist.md' },
+  { src: '.roo/rules-testing/testing-standards.md', dest: '.roo/rules-testing/testing-standards.md' },
+  { src: '.roo/rules-code-review/review-discipline.md', dest: '.roo/rules-code-review/review-discipline.md' },
+  { src: '.roo/rules-orchestrator/orchestration-protocol.md', dest: '.roo/rules-orchestrator/orchestration-protocol.md' },
+  { src: '.roo/rules-devops/operations-discipline.md', dest: '.roo/rules-devops/operations-discipline.md' },
   // Skills
   { src: '.roo/skills/context-checkpoint/SKILL.md', dest: '.roo/skills/context-checkpoint/SKILL.md' },
   { src: '.roo/skills/context-budget/SKILL.md', dest: '.roo/skills/context-budget/SKILL.md' },
@@ -147,36 +147,59 @@ let skipped = 0;
 let updated = 0;
 
 for (const { src, dest } of fileMap) {
-  const srcPath = path.join(templateDir, src);
-  const destPath = path.join(targetDir, dest);
+  try {
+    const srcPath = path.join(templateDir, src);
+    const destPath = path.join(targetDir, dest);
 
-  if (!fs.existsSync(srcPath)) {
-    console.log(yellow(`  ⚠ Template missing: ${src}`));
+    if (!fs.existsSync(srcPath)) {
+      console.log(yellow(`  ⚠ Template missing: ${src}`));
+      continue;
+    }
+
+    // Create directories
+    const destDir = path.dirname(destPath);
+    if (!fs.existsSync(destDir)) {
+      if (!dryRunMode) {
+        fs.mkdirSync(destDir, { recursive: true });
+      }
+    }
+
+    // Check if file exists
+    if (fs.existsSync(destPath) && !forceMode) {
+      console.log(dim(`  ○ Exists (skip): ${dest}`));
+      skipped++;
+      continue;
+    }
+
+    const action = fs.existsSync(destPath) ? 'overwrite' : 'create';
+
+    if (dryRunMode) {
+      if (action === 'create') {
+        console.log(cyan(`  → Would create: ${dest}`));
+        created++;
+      } else {
+        console.log(cyan(`  → Would update: ${dest}`));
+        updated++;
+      }
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+      if (action === 'create') {
+        console.log(green(`  ✓ Created: ${dest}`));
+        created++;
+      } else {
+        console.log(yellow(`  ↻ Updated: ${dest}`));
+        updated++;
+      }
+    }
+  } catch (error) {
+    const code = error.code || '';
+    if (code === 'EACCES' || code === 'EPERM') {
+      console.log(red(`  ✗ Permission denied: ${dest}`));
+      console.log(yellow(`    Try running with elevated permissions or check file ownership`));
+    } else {
+      console.log(red(`  ✗ Failed: ${dest} — ${error.message}`));
+    }
     continue;
-  }
-
-  // Create directories
-  const destDir = path.dirname(destPath);
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, { recursive: true });
-  }
-
-  // Check if file exists
-  if (fs.existsSync(destPath) && !forceMode) {
-    console.log(dim(`  ○ Exists (skip): ${dest}`));
-    skipped++;
-    continue;
-  }
-
-  const action = fs.existsSync(destPath) ? 'overwrite' : 'create';
-  fs.copyFileSync(srcPath, destPath);
-
-  if (action === 'create') {
-    console.log(green(`  ✓ Created: ${dest}`));
-    created++;
-  } else {
-    console.log(yellow(`  ↻ Updated: ${dest}`));
-    updated++;
   }
 }
 
@@ -212,7 +235,7 @@ if (globalSkillsMode) {
   }
 
   // Install each skill bucket from templates
-  for (const [bucket, skillNames] of Object.entries(globalSkillMap)) {
+  for (const [bucket, skillNames] of Object.entries(GLOBAL_SKILL_MAP)) {
     const srcBucketDir = path.join(globalSkillsTemplateDir, bucket);
     const destBucketDir = path.join(homeRooDir, bucket);
 
@@ -232,23 +255,34 @@ if (globalSkillsMode) {
         continue;
       }
 
-      try {
-        if (fs.existsSync(destSkillDir)) {
-          removeDirSync(destSkillDir);
-        }
-        copyDirSync(srcSkillDir, destSkillDir);
-        console.log(green(`  ✓ Installed: [${bucket}] ${skillName}`));
+      if (dryRunMode) {
+        console.log(cyan(`  → Would install: [${bucket}] ${skillName}`));
         globalInstalled++;
-      } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        console.log(red(`  ✗ Failed: [${bucket}] ${skillName} — ${message}`));
-        globalMissing++;
+      } else {
+        try {
+          if (fs.existsSync(destSkillDir)) {
+            removeDirSync(destSkillDir);
+          }
+          copyDirSync(srcSkillDir, destSkillDir);
+          console.log(green(`  ✓ Installed: [${bucket}] ${skillName}`));
+          globalInstalled++;
+        } catch (error) {
+            const code = error.code || '';
+            if (code === 'EACCES' || code === 'EPERM') {
+              console.log(red(`  ✗ Permission denied: [${bucket}] ${skillName}`));
+              console.log(yellow(`    Try running with elevated permissions or check file ownership`));
+            } else {
+              const message = error instanceof Error ? error.message : String(error);
+              console.log(red(`  ✗ Failed: [${bucket}] ${skillName} — ${message}`));
+            }
+            globalMissing++;
+          }
       }
     }
   }
 
   // ─── Global Skills Summary ───
-  const totalSkills = Object.values(globalSkillMap).reduce((sum, arr) => sum + arr.length, 0);
+  const totalSkills = Object.values(GLOBAL_SKILL_MAP).reduce((sum, arr) => sum + arr.length, 0);
   console.log('');
   console.log(bold('─── Global Skills Summary ───'));
   console.log(green(`  Installed: ${globalInstalled} / ${totalSkills} skills`));
@@ -276,18 +310,32 @@ if (mcpMode) {
 
   const mcpDestDir = path.dirname(mcpDestPath);
   if (!fs.existsSync(mcpDestDir)) {
-    fs.mkdirSync(mcpDestDir, { recursive: true });
+    if (!dryRunMode) {
+      fs.mkdirSync(mcpDestDir, { recursive: true });
+    }
   }
 
   if (fs.existsSync(mcpDestPath) && !forceMode) {
     console.log(dim('  ○ Exists (skip): .roo/mcp.json'));
+  } else if (dryRunMode) {
+    console.log(cyan('  → Would create: .roo/mcp.json'));
   } else {
-    fs.copyFileSync(mcpTemplatePath, mcpDestPath);
-    console.log(green('  ✓ Created: .roo/mcp.json'));
-    console.log(yellow('  ⚠ Configure environment variables:'));
-    console.log(yellow('    GITHUB_TOKEN      — GitHub Personal Access Token'));
-    console.log(yellow('    DATABASE_URL      — PostgreSQL connection string'));
-    console.log(yellow('    WORKSPACE_PATH    — Filesystem access path'));
+    try {
+      fs.copyFileSync(mcpTemplatePath, mcpDestPath);
+      console.log(green('  ✓ Created: .roo/mcp.json'));
+      console.log(yellow('  ⚠ Edit .roo/mcp.json and replace placeholder values:'));
+      console.log(yellow('    github → paste-your-github-token-here    → your actual GitHub PAT'));
+      console.log(yellow('    postgres → connection string              → your PostgreSQL URL'));
+      console.log(yellow('    filesystem → /path/to/your/workspace     → your project path'));
+    } catch (error) {
+      const code = error.code || '';
+      if (code === 'EACCES' || code === 'EPERM') {
+        console.log(red('  ✗ Permission denied: .roo/mcp.json'));
+        console.log(yellow('    Try running with elevated permissions or check file ownership'));
+      } else {
+        console.log(red(`  ✗ Failed: .roo/mcp.json — ${error.message}`));
+      }
+    }
   }
 }
 
@@ -308,8 +356,12 @@ if (!mcpMode) {
   console.log(cyan(`  ${globalSkillsMode ? '5' : '6'}. Run with --mcp to install MCP server config`));
 }
 if (mcpMode) {
-  console.log(cyan(`  ${globalSkillsMode ? '5' : '6'}. Set env vars: GITHUB_TOKEN, DATABASE_URL, WORKSPACE_PATH`));
+  console.log(cyan(`  ${globalSkillsMode ? '5' : '6'}. Edit .roo/mcp.json — replace placeholder values with real credentials`));
 }
 console.log('');
+if (dryRunMode) {
+  console.log(yellow(bold('  (dry-run mode — no files were written)')));
+  console.log('');
+}
 console.log(green(bold('✅ RooCode optimization installed successfully!')));
 console.log('');

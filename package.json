@@ -1,9 +1,15 @@
 {
   "name": "roo-code-setting",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Optimized RooCode settings, rules, modes & skills — install with one command",
   "bin": {
     "roo-code-setting": "./bin/install.js"
+  },
+  "engines": {
+    "node": ">=14.14.0"
+  },
+  "scripts": {
+    "test": "jest"
   },
   "keywords": [
     "roocode",
@@ -23,8 +29,12 @@
   },
   "files": [
     "bin/",
+    "lib/",
     "templates/",
     "README.md",
     "LICENSE"
-  ]
+  ],
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
 }

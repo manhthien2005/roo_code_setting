@@ -52,8 +52,11 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 - Prefer `read_file` with `mode: "indentation"` over full file reads for token efficiency.
 - Minimize re-renders: memoize components, avoid inline object/function creation in JSX.
 
-## Hard Rules
-- NEVER skip Phase 3 (Verify). Every change gets validated.
-- NEVER proceed to next phase if current gate fails.
-- If requirements are unclear, ASK before implementing (not after).
-- Use `update_todo_list` to track progress on multi-step tasks.
+## HARD RULES
+- MUST NOT skip Phase 3 (Verify) — every change gets validated, no exceptions.
+- MUST NOT proceed to next phase if current quality gate fails — fix first, then advance.
+- MUST ask before implementing when requirements are unclear — wrong assumptions cost more than questions.
+- MUST use `update_todo_list` to track progress on multi-step tasks.
+- MUST search for existing solutions (Phase 0) before writing new code for medium+ tasks.
+- MUST document search evidence: "Searched [X] → Found [Y] / No match found."
+- MUST NOT bulk-rewrite files — make incremental, reviewable changes.

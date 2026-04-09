@@ -59,7 +59,14 @@
 ## Related Rules
 - `reasoning-optimization.md` — extended thinking & reasoning effort guidance (not a skill, always loaded as rule)
 
-## Rules
-- DO NOT skip mandatory skills. They exist to prevent errors.
-- If a skill applies, follow its instructions COMPLETELY before proceeding.
-- When multiple skills could match, prefer the most specific one.
+## Session Learning Integration
+- At session start, if `.roo/learnings/patterns.md` exists, the agent should read the first 50 lines (triggered by `core-principles.md` Session Initialization rule).
+- The `continuous-learning` skill captures patterns at session end; this file closes the loop by making them available at session start.
+- Keep learnings file lean — top 20 entries max (older entries archived by the skill).
+
+## HARD RULES
+- MUST NOT skip mandatory skills — they exist to prevent errors.
+- MUST follow skill instructions COMPLETELY before proceeding when a skill applies.
+- MUST prefer the most specific skill when multiple skills could match.
+- MUST respect skill trigger conditions — do not invoke skills for unrelated tasks.
+- MUST check `.roo/learnings/patterns.md` at session start per `core-principles.md` Session Initialization.

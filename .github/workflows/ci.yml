@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 18, 20]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm test
+
+  lint-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify all rule files have HARD RULES section
+        run: |
+          failed=0
+          for f in templates/.roo/rules/*.md templates/.roo/rules-*/*.md; do
+            if ! grep -q "## HARD RULES" "$f"; then
+              echo "❌ Missing HARD RULES: $f"
+              failed=1
+            fi
+          done
+          if [ "$failed" -eq 1 ]; then
+            echo "::error::Some rule files are missing ## HARD RULES section"
+            exit 1
+          fi
+          echo "✅ All rule files have HARD RULES section"
+
+  lint-skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify skill frontmatter
+        run: |
+          failed=0
+          for f in $(find templates -name "SKILL.md"); do
+            if ! head -1 "$f" | grep -q "^---"; then
+              echo "❌ Missing frontmatter: $f"
+              failed=1
+            fi
+          done
+          if [ "$failed" -eq 1 ]; then
+            echo "::error::Some SKILL.md files are missing frontmatter"
+            exit 1
+          fi
+          echo "✅ All SKILL.md files have frontmatter"

@@ -28,3 +28,11 @@
 - If you discover exposed secrets: **STOP** → rotate immediately → notify user.
 - If you find a vulnerability in existing code: document it, flag severity, DO NOT silently fix without user awareness.
 - When adding new endpoints: verify auth middleware is applied BEFORE handler logic.
+
+## HARD RULES
+- MUST NOT hardcode secrets — scan for `password=`, `token=`, `apiKey=`, `secret=` before commit.
+- MUST verify `.env` is in `.gitignore` when secrets are involved.
+- MUST NOT expose stack traces or internal details in error responses.
+- MUST validate all user inputs at trust boundaries — no blind trust of client data.
+- MUST escalate security concerns to user immediately — never silently fix auth bypasses.
+- MUST apply auth middleware BEFORE route handlers — never after.

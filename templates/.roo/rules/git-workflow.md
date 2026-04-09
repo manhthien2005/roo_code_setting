@@ -20,3 +20,10 @@
 - One PR = one logical change. DO NOT bundle unrelated changes.
 - PR description must include: what changed, why, and how to test.
 - Keep changes modular — explain user-facing impact in the summary.
+
+## HARD RULES
+- MUST use conventional commit format (`type(scope): description`) — no exceptions.
+- MUST run lint and tests before committing — `lint-and-validate` skill handles this.
+- MUST NOT commit `console.log`, `debugger`, TODO without issue number, or commented-out code.
+- MUST NOT commit files unrelated to the current task — check `git diff --staged`.
+- MUST NOT push without reviewing your own diff first.
