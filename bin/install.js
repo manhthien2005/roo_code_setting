@@ -116,14 +116,19 @@ const fileMap = [
   { src: '.roo/rules/skill-awareness.md', dest: '.roo/rules/skill-awareness.md' },
   { src: '.roo/rules/performance-optimization.md', dest: '.roo/rules/performance-optimization.md' },
   { src: '.roo/rules/reasoning-optimization.md', dest: '.roo/rules/reasoning-optimization.md' },
+  { src: '.roo/rules/code-graph-awareness.md', dest: '.roo/rules/code-graph-awareness.md' },
   // Mode-specific rules
   { src: '.roo/rules-architect/planning-discipline.md', dest: '.roo/rules-architect/planning-discipline.md' },
+  { src: '.roo/rules-architect/graph-assisted-architecture.md', dest: '.roo/rules-architect/graph-assisted-architecture.md' },
   { src: '.roo/rules-code/coding-standards.md', dest: '.roo/rules-code/coding-standards.md' },
   { src: '.roo/rules-code/code-review-before-done.md', dest: '.roo/rules-code/code-review-before-done.md' },
+  { src: '.roo/rules-code/graph-assisted-coding.md', dest: '.roo/rules-code/graph-assisted-coding.md' },
   { src: '.roo/rules-debug/systematic-debugging.md', dest: '.roo/rules-debug/systematic-debugging.md' },
+  { src: '.roo/rules-debug/graph-assisted-debugging.md', dest: '.roo/rules-debug/graph-assisted-debugging.md' },
   { src: '.roo/rules-security-review/security-checklist.md', dest: '.roo/rules-security-review/security-checklist.md' },
   { src: '.roo/rules-testing/testing-standards.md', dest: '.roo/rules-testing/testing-standards.md' },
   { src: '.roo/rules-code-review/review-discipline.md', dest: '.roo/rules-code-review/review-discipline.md' },
+  { src: '.roo/rules-code-review/graph-assisted-review.md', dest: '.roo/rules-code-review/graph-assisted-review.md' },
   { src: '.roo/rules-orchestrator/orchestration-protocol.md', dest: '.roo/rules-orchestrator/orchestration-protocol.md' },
   { src: '.roo/rules-devops/operations-discipline.md', dest: '.roo/rules-devops/operations-discipline.md' },
   // Skills
@@ -327,6 +332,10 @@ if (mcpMode) {
       console.log(yellow('    github → paste-your-github-token-here    → your actual GitHub PAT'));
       console.log(yellow('    postgres → connection string              → your PostgreSQL URL'));
       console.log(yellow('    filesystem → /path/to/your/workspace     → your project path'));
+      console.log('');
+      console.log(dim('  📊 code-review-graph (optional, for graph-assisted code reviews):'));
+      console.log(dim('    pip install code-review-graph   (requires Python 3.10+)'));
+      console.log(dim('    code-review-graph build         (index your project)'));
     } catch (error) {
       const code = error.code || '';
       if (code === 'EACCES' || code === 'EPERM') {

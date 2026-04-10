@@ -13,6 +13,9 @@
 | `windows-shell-reliability` | Auto-trigger on Windows for command execution | ✅ Auto |
 | `planning-with-files` | Complex multi-step tasks needing persistent progress | Optional |
 | `concise-planning` | When user asks for a plan for a coding task | Optional |
+| `code-graph-build` | When user asks to build/index/update knowledge graph (requires code-review-graph MCP) | Optional |
+| `code-graph-review` | When user asks for graph-assisted code review with blast-radius (requires code-review-graph MCP) | Optional |
+| `code-graph-impact` | When user asks for impact analysis before changes (requires code-review-graph MCP) | Optional |
 
 ### Mode-Specific Global Skills
 > 20 additional mode-specific skills are installed to `~/.roo/skills-{mode}/`. The agent discovers them automatically via SKILL.md frontmatter when the matching mode is active. See `skills-registry.md` or `.roo/rules/skill-awareness.md` in the project root for the full inventory.
@@ -36,6 +39,7 @@
 
 ## Related Rules
 - `reasoning-optimization.md` — extended thinking & reasoning effort guidance (not a skill, always loaded as rule)
+- `code-graph-awareness.md` — conditional rule for code-review-graph MCP integration (active only when MCP server available)
 
 ## Session Learning Integration
 - At session start, if `.roo/learnings/patterns.md` exists, the agent should read the first 50 lines (triggered by `core-principles.md` Session Initialization rule).

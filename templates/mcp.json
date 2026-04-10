@@ -25,6 +25,11 @@
         "<REPLACE: /absolute/path/to/your/workspace>"
       ],
       "env": {}
+    },
+    "code-review-graph": {
+      "$comment": "Knowledge graph for token-efficient code reviews. Requires: pip install code-review-graph (Python 3.10+). Run 'code-review-graph build' in your project first. Provides 22 MCP tools for blast-radius analysis, impact detection, architecture overview, and more. See: https://github.com/tirth8205/code-review-graph",
+      "command": "uvx",
+      "args": ["code-review-graph", "serve"]
     }
   }
 }

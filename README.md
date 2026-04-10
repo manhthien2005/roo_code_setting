@@ -70,11 +70,11 @@ your-project/
 
 ### With `--global-skills`
 
-Installs 26 curated skills to `~/.roo/`:
+Installs 29 curated skills to `~/.roo/`:
 
 ```
 ~/.roo/
-├── skills/                            # All-modes (6 skills)
+├── skills/                            # All-modes (9 skills, includes code-graph-*)
 ├── skills-skill-writer/               # Skill Writer mode (2)
 ├── skills-merge-resolver/             # Merge Resolver mode (2)
 ├── skills-documentation-writer/       # Documentation Writer mode (3)
@@ -89,7 +89,11 @@ Installs 26 curated skills to `~/.roo/`:
 
 ### With `--mcp`
 
-Copies MCP server config to `your-project/.roo/mcp.json` with 3 pre-configured servers (GitHub, PostgreSQL, FileSystem).
+Copies MCP server config to `your-project/.roo/mcp.json` with 4 pre-configured servers:
+- **GitHub** — repository access
+- **PostgreSQL** — database queries
+- **FileSystem** — file operations
+- **code-review-graph** — knowledge graph for token-efficient code reviews (requires `pip install code-review-graph`, Python 3.10+)
 
 ## 🎯 What's Optimized
 
@@ -111,7 +115,7 @@ Import via: **RooCode → ⚙️ → Import Settings**
 
 ### 2. Rules (`.roo/rules/`)
 
-19 rule files auto-inject into every AI message (~3.6K tokens = 1.5% of context):
+24 rule files auto-inject into every AI message:
 
 | Rule | What It Enforces |
 |------|-----------------|
@@ -124,13 +128,18 @@ Import via: **RooCode → ⚙️ → Import Settings**
 | **Reasoning Optimization** | Extended thinking, effort calibration per task type |
 | **Security First** | No SQL injection, XSS, hardcoded credentials |
 | **Skill Awareness** | Which skills trigger when |
+| **Code Graph Awareness** | 🆕 When/how to use knowledge graph MCP tools (conditional) |
 | **Planning Discipline** | ≥2 alternatives, risk assessment (Architect mode) |
+| **Graph-Assisted Architecture** | 🆕 Data-driven architecture proposals via graph (Architect mode) |
 | **Coding Standards** | TypeScript rules, size limits, self-review checklist (Code mode) |
 | **Code Review Before Done** | Mandatory verification before completion (Code mode) |
+| **Graph-Assisted Coding** | 🆕 Impact preview + blast-radius check before edits (Code mode) |
 | **Systematic Debugging** | 5-phase scientific method (Debug mode) |
+| **Graph-Assisted Debugging** | 🆕 Execution flow tracing via graph (Debug mode) |
 | **Security Checklist** | OWASP top 10, secret scanning (Security Review mode) |
 | **Testing Standards** | Coverage targets, test naming, mocking rules (Testing mode) |
 | **Review Discipline** | PR checklist, severity classification (Code Review mode) |
+| **Graph-Assisted Review** | 🆕 Blast-radius review with structural context (Code Review mode) |
 | **Orchestration Protocol** | Task decomposition, delegation, subtask failure policy (Orchestrator mode) |
 | **Operations Discipline** | Infra-as-code, rollback policy (DevOps mode) |
 | **Definition of Done** | Universal completion checklist + mode-specific exit gates |
@@ -162,11 +171,11 @@ Excludes noise from AI context window:
 
 ### 6. Global Skills (`~/.roo/` — opt-in)
 
-26 curated skills across 11 specialist modes, installed with `--global-skills`:
+29 curated skills across 11 specialist modes, installed with `--global-skills`:
 
 | Bucket | Mode | Skills |
 |--------|------|--------|
-| Core | All modes | `planning-with-files`, `concise-planning`, `lint-and-validate`, `systematic-debugging`, `verification-before-completion`, `windows-shell-reliability` |
+| Core | All modes | `planning-with-files`, `concise-planning`, `lint-and-validate`, `systematic-debugging`, `verification-before-completion`, `windows-shell-reliability`, 🆕 `code-graph-build`, `code-graph-review`, `code-graph-impact` |
 | Skill Writer | `skill-writer` | `writing-skills`, `skill-check` |
 | Merge Resolver | `merge-resolver` | `differential-review`, `finishing-a-development-branch` |
 | Documentation | `documentation-writer` | `api-documentation`, `readme`, `documentation-templates` |

@@ -10,9 +10,12 @@ flowchart LR
     B[Modes\n.roomodes]
     C[Rules\n.roo/rules and mode-specific rule folders]
     D[Skills\n.roo/skills]
+    M[MCP Tools\nmcp.json]
     E[Agent Behavior]
 
     A --> B --> C --> D --> E
+    M --> E
+    C -.->|graph-awareness rules| M
 ```
 
 ### What each layer controls
@@ -23,6 +26,7 @@ flowchart LR
 | Modes | Role definition, scope, tool groups, escalation paths | [`templates/.roomodes`](../templates/.roomodes) |
 | Rules | Always-on operating constraints and workflows | [`templates/.roo/rules/`](../templates/.roo/) |
 | Skills | Situational instructions triggered when a matching need is detected | [`templates/.roo/skills-registry.md`](../templates/.roo/skills-registry.md) |
+| MCP Tools | External tool servers providing specialized capabilities (graph, DB, filesystem) | [`templates/mcp.json`](../templates/mcp.json) |
 
 ## 2. Override precedence
 
@@ -97,12 +101,14 @@ Important runtime controls from [`templates/roo-code-settings-optimized.json`](.
 templates/
 ├── .roomodes                         # Workspace mode definitions copied by installer
 ├── .rooignore                        # Context filtering rules copied by installer
+├── mcp.json                          # MCP server configuration (4 servers)
 ├── .roo/
 │   ├── skills-registry.md            # Installed skill inventory
-│   ├── rules/                        # 8 global rules
-│   ├── rules-architect/              # Architect-only rules
-│   ├── rules-code/                   # Code-only rules
-│   ├── rules-debug/                  # Debug-only rules
+│   ├── rules/                        # 9 global rules (incl. code-graph-awareness)
+│   ├── rules-architect/              # Architect-only rules (incl. graph-assisted)
+│   ├── rules-code/                   # Code-only rules (incl. graph-assisted)
+│   ├── rules-code-review/            # Code-review-only rules (incl. graph-assisted)
+│   ├── rules-debug/                  # Debug-only rules (incl. graph-assisted)
 │   ├── skills/                       # Project skills shipped by this template
 │   └── learnings/                    # Captured patterns / long-term notes
 ├── roo-code-settings-optimized.json  # Import-ready settings profile
@@ -110,14 +116,66 @@ templates/
 ├── rule-template.md                  # Reference for creating new rules
 ├── rules/                            # Optional project-language rules
 └── skill-template/                   # Starter template for a new skill
+
+global-skills/skills/
+├── code-graph-build/SKILL.md         # Build/update knowledge graph
+├── code-graph-review/SKILL.md        # Graph-assisted code review
+├── code-graph-impact/SKILL.md        # Impact analysis before changes
+├── concise-planning/SKILL.md
+├── lint-and-validate/SKILL.md
+├── planning-with-files/SKILL.md
+├── systematic-debugging/SKILL.md
+├── verification-before-completion/SKILL.md
+└── windows-shell-reliability/SKILL.md
 ```
 
-## 7. How the pieces work together
+## 7. Code Knowledge Graph integration
+
+The template optionally integrates with [code-review-graph](https://github.com/tirth8205/code-review-graph), an MCP server that builds a structural knowledge graph from source code using Tree-sitter. When active, it provides 22 tools for blast-radius analysis, architecture exploration, and token-efficient code context.
+
+### How the graph layer activates
+
+1. **Detection** — [`code-graph-awareness.md`](../templates/.roo/rules/code-graph-awareness.md) checks if graph MCP tools are available at session start.
+2. **If available** — Rules inject graph-powered steps into existing workflows (research → impact check → review).
+3. **If unavailable** — All graph steps are gracefully skipped. No workflow breaks.
+
+### Token-efficient workflow
+
+```text
+get_minimal_context_tool(task="...")     → ~100 tokens, structural overview
+  ↓
+query_graph_tool(detail_level="minimal") → targeted queries
+  ↓
+get_impact_radius_tool(changed_files=[]) → blast-radius before editing
+```
+
+Target: **≤5 graph tool calls** and **≤800 tokens** of graph context per task.
+
+### Risk depth model (from blast-radius)
+
+| Depth | Meaning | Required action |
+|-------|---------|-----------------|
+| d=1 | **WILL BREAK** — direct callers/importers | Must update |
+| d=2 | **LIKELY AFFECTED** — indirect dependents | Should test |
+| d=3 | **MAY NEED TESTING** — transitive | Test if critical path |
+
+### Mode-specific graph rules
+
+| Mode | Rule file | Key capability |
+|------|-----------|---------------|
+| Code | [`graph-assisted-coding.md`](../templates/.roo/rules-code/graph-assisted-coding.md) | Structural search, impact preview, test coverage check |
+| Code Review | [`graph-assisted-review.md`](../templates/.roo/rules-code-review/graph-assisted-review.md) | Review context, blast-radius findings, risk scoring |
+| Debug | [`graph-assisted-debugging.md`](../templates/.roo/rules-debug/graph-assisted-debugging.md) | Flow tracing, caller/callee analysis, change detection |
+| Architect | [`graph-assisted-architecture.md`](../templates/.roo/rules-architect/graph-assisted-architecture.md) | Architecture overview, community detection, quantified impact |
+
+## 8. How the pieces work together
 
 - The installer copies template assets into a workspace.
 - Settings decide **which model** and **which permissions** each mode gets.
 - Modes define **who the agent is** and **what tools it may use**.
 - Rules define **guardrails and workflow**.
 - Skills inject **task-specific playbooks** only when relevant.
+- MCP tools extend the agent's capabilities with **external servers** (knowledge graph, database, filesystem, GitHub).
+- Graph-awareness rules teach the agent **when and how** to leverage the knowledge graph — conditionally, only when available.
 
 Use [Getting Started](./getting-started.md) for setup, [Troubleshooting](./troubleshooting.md) when behavior is off, and [Quick Reference](./quick-reference.md) for daily lookup.
