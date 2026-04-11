@@ -1,4 +1,5 @@
 {
+  "_README": "This is a TEMPLATE file. Copy to your project and replace all <PLACEHOLDER> values with your actual credentials. Create 'roo-settings.local.json' for local overrides (gitignored). See docs/getting-started.md for setup instructions.",
   "providerProfiles": {
     "currentApiConfigName": "Opus 4.6",
     "apiConfigs": {
@@ -7,8 +8,8 @@
         "rateLimitSeconds": 3,
         "consecutiveMistakeLimit": 3,
         "enableReasoningEffort": true,
-        "openAiBaseUrl": "https://aitokens.io.vn/v1",
-        "openAiApiKey": "",
+        "openAiBaseUrl": "<YOUR_OPENAI_BASE_URL>",
+        "openAiApiKey": "<YOUR_API_KEY_HERE>",
         "openAiModelId": "gpt-5.4",
         "openAiCustomModelInfo": {
           "maxTokens": 32000,
@@ -29,8 +30,8 @@
         "rateLimitSeconds": 3,
         "consecutiveMistakeLimit": 3,
         "enableReasoningEffort": true,
-        "openAiBaseUrl": "https://aitokens.io.vn/v1",
-        "openAiApiKey": "",
+        "openAiBaseUrl": "<YOUR_OPENAI_BASE_URL>",
+        "openAiApiKey": "<YOUR_API_KEY_HERE>",
         "openAiModelId": "claude-opus-4.6",
         "openAiCustomModelInfo": {
           "maxTokens": 32000,
@@ -75,7 +76,7 @@
   },
   "globalSettings": {
     "lastShownAnnouncementId": "mar-2026-v3.51.0-gpt-54-slash-skills",
-    "openRouterImageApiKey": "",
+    "openRouterImageApiKey": "<YOUR_OPENROUTER_IMAGE_API_KEY>",
     "openRouterImageGenerationSelectedModel": "",
     "autoApprovalEnabled": true,
     "alwaysAllowReadOnly": true,
@@ -422,7 +423,11 @@
     ],
     "customSupportPrompts": {
       "ENHANCE": "Refine this task: add constraints, edge cases, and success criteria. If the task mentions specific files, include file paths. Keep the enhanced prompt concise and actionable.",
-      "REVIEW": "Review my code for: (1) Correctness, (2) Security vulnerabilities, (3) Performance issues, (4) Missing error handling, (5) Style consistency. Use severity tags: 🔴 Critical | 🟠 Major | 🟡 Minor | 🟢 Suggestion."
+      "REVIEW": "Review my code for: (1) Correctness, (2) Security vulnerabilities, (3) Performance issues, (4) Missing error handling, (5) Style consistency. Use severity tags: 🔴 Critical | 🟠 Major | 🟡 Minor | 🟢 Suggestion.",
+      "PLAN": "Switch to Architect mode. Analyze the current task, break it into phases, identify risks and dependencies. Create a structured plan with checklist. Do NOT implement — only plan.",
+      "IMPLEMENT": "Switch to Code mode. Read the plan file in plans/ directory (if exists). Implement the next pending phase from the checklist. Follow development-workflow phases: search existing code first, implement incrementally, then verify with lint/test.",
+      "DEBUG": "Switch to Debug mode. Use systematic-debugging approach: gather evidence first, form hypothesis, test hypothesis, then fix. Do NOT guess — verify root cause before proposing a fix. Report what you tried and what you found.",
+      "HANDOFF": "Summarize current progress: what was done, what files were changed, what remains, and any blockers or decisions needed. Format as a structured handoff document that another mode or session can pick up from."
     },
     "includeTaskHistoryInEnhance": true,
     "reasoningBlockCollapsed": true,

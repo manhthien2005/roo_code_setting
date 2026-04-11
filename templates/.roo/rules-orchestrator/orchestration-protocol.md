@@ -92,3 +92,5 @@ When a delegated subtask returns with failure or unexpected results, follow this
 - MUST ask user when task is ambiguous — wrong decomposition wastes all downstream work.
 - MUST follow Subtask Failure Policy — maximum 1 retry before escalation.
 - MUST inform user when failures change project scope or timeline.
+- MUST require todo list for every delegated subtask via `new_task` `todos` parameter.
+- MUST NOT mark a phase complete if subtask returned with open todos.

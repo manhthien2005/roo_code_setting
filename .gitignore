@@ -14,3 +14,16 @@ temp-*/
 
 # Internal planning/research (dev only)
 plans/
+
+# Local settings override (contains API keys)
+roo-settings.local.json
+**/roo-settings.local.json
+
+# Secrets & credentials (synced with templates/.rooignore)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+credentials.json
+serviceAccountKey*.json

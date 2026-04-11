@@ -120,7 +120,7 @@ describe('GLOBAL_SKILL_MAP', function () {
     var total = Object.values(GLOBAL_SKILL_MAP).reduce(function (sum, arr) {
       return sum + arr.length;
     }, 0);
-    expect(total).toBe(26);
+    expect(total).toBe(29);
   });
 });
 

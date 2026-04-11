@@ -55,3 +55,24 @@ Use the `execute_command` tool to run all lint and type-check commands directly.
 - **MANDATORY** after every code change (write, edit, refactor)
 - Before calling `attempt_completion` to confirm code compiles cleanly
 - When user asks to validate or check code quality
+
+## Common Rationalizations (Anti-Rationalization)
+
+These are excuses agents use to skip validation. All are incorrect.
+
+| Rationalization | Reality |
+|---|---|
+| "The change is too small to lint" | Small changes cause big breaks. A missing import or type error takes seconds to catch now, hours to debug later. |
+| "I'll run lint at the end after all changes" | Errors compound. Fixing 10 issues at once is harder than fixing 1 at a time. Run after EACH change. |
+| "The project doesn't have lint configured" | Check for config files first. If none exist, suggest creating one. Never assume no config = no validation. |
+| "Lint is passing in my head — I wrote clean code" | Confidence is not evidence. Run the tools. Even senior engineers make typos. |
+| "The user didn't ask me to lint" | This skill is MANDATORY. The user doesn't need to ask. Run validation automatically. |
+| "I'll fix the warnings later" | Warnings become errors. Fix them now or document why they're acceptable. |
+
+## Red Flags
+
+Signs this skill is being skipped or misapplied:
+- Calling `attempt_completion` without any `execute_command` for lint/type-check
+- Saying "the code looks correct" without running validation tools
+- Fixing one error but not re-running to check for cascading issues
+- Ignoring warnings because "they're just warnings"

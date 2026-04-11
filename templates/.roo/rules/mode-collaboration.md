@@ -19,6 +19,13 @@ When switching modes via `new_task` or `switch_mode`, pass structured context:
 - **Code → Debug**: Pass error message, stack trace, steps to reproduce, what was tried. Expect: root cause.
 - **Any → Ask**: Pass specific question with 2-4 suggested answers. Expect: user's decision.
 
+## Pre-Switch Verification (Medium+ tasks only)
+Before switching modes, verify:
+- [ ] Context summary passed to target mode (## Context section)
+- [ ] Current progress documented (todo list or plan file updated)
+- [ ] Pending decisions explicitly listed
+- [ ] No uncommitted critical changes that target mode needs
+
 ## HARD RULES
 - NEVER switch modes without passing context. The target mode needs information.
 - ALWAYS include what was already tried when switching to Debug mode.

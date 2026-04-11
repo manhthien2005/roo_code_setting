@@ -15,6 +15,15 @@
 | Large (architecture) | Deep analysis → decompose → multiple phases | Refactor authentication system |
 | Debug (root cause) | Hypothesis → evidence → test → conclude | Fix intermittent test failure |
 
+## Complexity Indicators (Decision Tree)
+| Keyword/Signal | → Level | Workflow |
+|----------------|---------|----------|
+| typo, rename, config change | Trivial | Direct action |
+| fix bug in single file, add validation | Small | Brief analysis → implement |
+| new endpoint, multi-file feature, refactor module | Medium | Plan → implement → verify |
+| architecture change, new system, migration | Large | Architect mode → phased plan |
+| error, failing test, unexpected behavior | Debug | Hypothesis → evidence → test |
+
 ## Chain-of-Thought Guidance
 - When facing ambiguity: list all interpretations before choosing
 - When estimating impact: consider 1st order + 2nd order effects

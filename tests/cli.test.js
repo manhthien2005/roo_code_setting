@@ -105,3 +105,22 @@ describe('CLI: --clean', function () {
     }
   });
 });
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// GLOBAL_SKILL_MAP Consistency Tests
+// ═══════════════════════════════════════════════════════════════════════════════
+
+describe('GLOBAL_SKILL_MAP consistency', function () {
+  var installer = require('../lib/installer');
+  var map = installer.GLOBAL_SKILL_MAP;
+
+  test('total skill count matches expected 29', function () {
+    var total = Object.keys(map).reduce(function (sum, key) {
+      return sum + map[key].length;
+    }, 0);
+
+    expect(total).toBe(29);
+    // If this fails: GLOBAL_SKILL_MAP count changed — update docs!
+    // Files to update: lib/installer.js comment, README.md, docs/getting-started.md
+  });
+});

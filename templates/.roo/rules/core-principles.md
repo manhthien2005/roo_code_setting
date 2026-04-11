@@ -8,6 +8,8 @@
 - Follow established repository patterns before inventing new ones.
 - Verify changes work after every edit (build, lint, or run).
 - Use `update_todo_list` to track progress on multi-step tasks.
+- Log key decisions and their reasoning when task complexity ≥ Medium.
+- Record error context (what failed, what was tried) before switching approach.
 
 ## Must Never
 - Include secrets (API keys, tokens, passwords, absolute paths) in output.
@@ -15,6 +17,22 @@
 - Bypass security checks, validation, or linter configs.
 - Duplicate existing functionality without clear justification.
 - Change code outside the scope of the current task.
+
+## Scope Discipline (from incremental-implementation)
+Touch only what the task requires. Do NOT:
+- "Clean up" code adjacent to your change
+- Refactor imports in files you're not modifying
+- Remove comments you don't fully understand
+- Add features not in the spec because they "seem useful"
+- Modernize syntax in files you're only reading
+
+If you notice something worth improving outside your task scope, note it — don't fix it:
+```
+NOTICED BUT NOT TOUCHING:
+- src/utils/format.ts has an unused import (unrelated to this task)
+- The auth middleware could use better error messages (separate task)
+→ Want me to create tasks for these?
+```
 
 ## When Uncertain
 - ASK the user. DO NOT guess or hallucinate solutions.
@@ -40,5 +58,8 @@
 - MUST verify changes work (build/lint/test) before claiming done.
 - MUST NOT include secrets in any output — no exceptions, no "just for debugging".
 - MUST use `update_todo_list` for tasks with 3+ steps.
+- MUST create a todo list (`update_todo_list`) within the first response when receiving any non-trivial task.
+- MUST NOT use `attempt_completion` while any todo item is still open (`[ ]` or `[-]`) — finish or explicitly remove with justification first.
 - MUST check `.roo/learnings/patterns.md` at session start if it exists.
 - MUST NOT build on outputs that contradict known facts — verify first.
+- MUST NOT touch code outside the current task scope — note it, don't fix it.

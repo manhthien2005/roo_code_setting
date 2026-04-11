@@ -46,6 +46,30 @@ Trigger after EVERY code change in Code mode — automatically verify standards 
 - Group: external deps → internal modules → relative paths
 - Prefer named exports over default exports
 
+### 6. Simplicity First (from incremental-implementation)
+
+Before writing any code, ask: **"What is the simplest thing that could work?"**
+
+After writing code, review against these checks:
+- Can this be done in fewer lines?
+- Are these abstractions earning their complexity?
+- Would a staff engineer say "why didn't you just..."?
+- Am I building for hypothetical future requirements, or the current task?
+
+```
+SIMPLICITY CHECK:
+✗ Generic EventBus with middleware pipeline for one notification
+✓ Simple function call
+
+✗ Abstract factory pattern for two similar components
+✓ Two straightforward components with shared utilities
+
+✗ Config-driven form builder for three forms
+✓ Three form components
+```
+
+Three similar lines of code is better than a premature abstraction. Implement the naive, obviously-correct version first. Optimize only after correctness is proven with tests.
+
 ## Reference
 
 For full TypeScript rules, pre-coding checklist, and self-review process, see `.roo/rules-code/coding-standards.md`.

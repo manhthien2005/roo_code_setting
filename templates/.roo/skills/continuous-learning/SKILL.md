@@ -14,6 +14,11 @@ tags: [learning, patterns, improvement]
 
 ## Instructions
 
+0. **Check previous context** (if resuming a task):
+   - Read `plans/` directory for recent plan files related to current task
+   - Check `.roo/learnings/patterns.md` Top Patterns section
+   - If previous session artifacts found, summarize relevant context before proceeding
+
 1. **Review session** — summarize:
    - What was the task? What approach was used?
    - Outcome: success or issues encountered?

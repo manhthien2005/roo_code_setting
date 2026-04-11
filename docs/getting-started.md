@@ -16,7 +16,7 @@ Run from the target workspace:
 
 ```bash
 npx github:manhthien2005/roo_code_setting                              # Project settings only
-npx github:manhthien2005/roo_code_setting --global-skills               # + 26 global skills
+npx github:manhthien2005/roo_code_setting --global-skills               # + 29 global skills
 npx github:manhthien2005/roo_code_setting --global-skills --mcp         # + MCP servers
 npx github:manhthien2005/roo_code_setting --global-skills --mcp --force # Force overwrite
 ```
@@ -28,7 +28,7 @@ What the installer actually does, based on [`bin/install.js`](../bin/install.js)
 - Creates missing directories before copying files.
 - Skips existing files by default.
 - Overwrites existing files only with `--force` or `-f`.
-- With `--global-skills`: copies 26 curated skills from `templates/global-skills/` to `~/.roo/`.
+- With `--global-skills`: copies 29 curated skills from `templates/global-skills/` to `~/.roo/`.
 - With `--mcp`: copies `templates/mcp.json` to `.roo/mcp.json` in your workspace.
 - Prints next steps: import settings, add API key, customize `.rooignore`, and edit `.roomodes` if needed.
 
@@ -90,7 +90,7 @@ The project registry lists 6 skills in [`templates/.roo/skills-registry.md`](../
 npx github:manhthien2005/roo_code_setting --global-skills
 ```
 
-This installs 26 skills across 11 buckets:
+This installs 29 skills across 11 buckets:
 
 | Bucket | Target Mode | Skills Installed |
 |--------|-------------|-----------------|

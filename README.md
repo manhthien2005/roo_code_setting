@@ -8,12 +8,12 @@ Production-grade settings, rules, modes & skills for [RooCode](https://github.co
 
 ```bash
 npx github:manhthien2005/roo_code_setting                              # Project settings only
-npx github:manhthien2005/roo_code_setting --global-skills               # + 26 global skills
+npx github:manhthien2005/roo_code_setting --global-skills               # + 29 global skills
 npx github:manhthien2005/roo_code_setting --global-skills --mcp         # + MCP servers
 npx github:manhthien2005/roo_code_setting --global-skills --mcp --force # Force overwrite
 ```
 
-One command installs optimized settings, rules, modes, and skills. Add `--global-skills` for 26 curated skills, `--mcp` for MCP server config.
+One command installs optimized settings, rules, modes, and skills. Add `--global-skills` for 29 curated skills, `--mcp` for MCP server config.
 
 ## 📦 What Gets Installed
 

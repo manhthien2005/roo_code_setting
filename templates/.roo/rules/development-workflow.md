@@ -9,6 +9,7 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 - Look for ≥80% match solutions — adapt rather than recreate.
 - Prefer proven, tested approaches over novel implementations.
 - Document findings: "Searched [X] → Found [Y] / No match found."
+- If `code-review-graph` MCP is available, also use `semantic_search_nodes_tool` for structural code discovery (see `code-graph-awareness.md`).
 - **Quality gate**: Evidence of search performed before writing new code.
 
 ### Phase 1: Plan
@@ -27,6 +28,7 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 - Run lint, type-check, and tests (`lint-and-validate` skill).
 - Self-review using the checklist in `coding-standards.md`.
 - Confirm no `console.log`, `debugger`, hardcoded secrets, or TODO without issue numbers.
+- If `code-review-graph` MCP is available, run `detect_changes_tool` for impact verification (see `code-graph-awareness.md`).
 - **Quality gate**: All checks pass, no CRITICAL/HIGH issues.
 
 ### Phase 4: Review & Commit
@@ -43,6 +45,37 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 | Medium (feature, multi-file) | Phase 0 + All 4 phases |
 | Large (architecture change) | Phase 0 + All 4 + Architect mode first |
 
+## Phase Gate Enforcement (from spec-driven-development pattern)
+
+Each phase has a **gate** that MUST pass before advancing. Do NOT skip gates — they exist to catch problems early.
+
+```
+Phase 0 → GATE: Evidence of search documented
+              ↓ PASS
+Phase 1 → GATE: User confirms plan
+              ↓ PASS
+Phase 2 → GATE: Code compiles, no new lint errors
+              ↓ PASS
+Phase 3 → GATE: All checks pass (lint + type-check + tests)
+              ↓ PASS
+Phase 4 → GATE: Self-review checklist complete, diff reviewed
+              ↓ DONE
+```
+
+**Gate failure protocol:**
+1. STOP — do not advance to next phase
+2. Fix the issue in the current phase
+3. Re-run the gate check
+4. Only advance when gate passes
+
+**Common gate-skipping rationalizations:**
+| Rationalization | Reality |
+|---|---|
+| "I'll fix lint errors after all changes" | Errors compound. Fix per-phase, not at the end. |
+| "User didn't explicitly confirm, but it's obvious" | Implicit approval ≠ confirmation. Ask. |
+| "Tests pass so review isn't needed" | Tests check behavior, review checks quality. Both required. |
+| "It's a small change, gates are overkill" | Small changes still follow Phase 2+3 gates minimum. |
+
 ## Performance Rules
 - Avoid N+1 queries — batch database operations where possible.
 - Prefer pagination for large datasets; never load unbounded collections.
@@ -57,6 +90,8 @@ Every non-trivial task MUST follow this pipeline. Do NOT skip phases.
 - MUST NOT proceed to next phase if current quality gate fails — fix first, then advance.
 - MUST ask before implementing when requirements are unclear — wrong assumptions cost more than questions.
 - MUST use `update_todo_list` to track progress on multi-step tasks.
+- MUST create checklist for every subtask/boomerang task — no task without tracking.
+- MUST verify all todo items are `[x]` before calling `attempt_completion`.
 - MUST search for existing solutions (Phase 0) before writing new code for medium+ tasks.
 - MUST document search evidence: "Searched [X] → Found [Y] / No match found."
 - MUST NOT bulk-rewrite files — make incremental, reviewable changes.

@@ -35,7 +35,15 @@ bun.lockb
 .git/
 
 # --- IDE/Editor ---
-.vscode/
+# Block most .vscode/ but allow key workflow files
+# NOTE: .rooignore may not support negation patterns (!)
+# If negation doesn't work, remove this block entirely
+# and rely on .vscode/ files being low-noise enough
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
 .idea/
 *.swp
 *.swo
@@ -48,8 +56,28 @@ desktop.ini
 
 # --- Environment & secrets ---
 .env
+.env.*
+*.env
 .env.local
 .env.*.local
+credentials.json
+serviceAccountKey*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.cert
+*.crt
+id_rsa*
+*.keystore
+secrets/
+.secrets/
+roo-settings.local.json
+
+# --- Database dumps & sensitive logs ---
+*.sql.gz
+*.dump
+*.bak
 
 # --- Temporary / research repos (completed research) ---
 temp-ecc/
