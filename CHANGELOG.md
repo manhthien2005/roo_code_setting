@@ -1,64 +1,129 @@
-# Changelog
+# 📋 Nhật Ký Thay Đổi (Changelog)
 
-All notable changes to this project will be documented in this file.
+Tất cả thay đổi đáng chú ý của dự án sẽ được ghi nhận trong file này.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Định dạng dựa trên [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+và dự án tuân theo [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [2.3.0] - 2025-04-12
+
+### 🎨 Thêm mới — Chế độ FE Designer
+
+- **Chế độ FE Designer** hoàn chỉnh với định nghĩa mode trong `.roomodes`
+- 📏 **5 file quy tắc thiết kế**: design discipline, visual standards, accessibility, component patterns, UI critique
+- 🛠️ **4 skills mới**: `accessibility-checker`, `component-design`, `design-system-audit`, `ui-critique`
+- 🎯 **3 bộ design token presets**: minimalist, corporate, creative
+- 📚 **7 file tham chiếu style**: buttons, forms, cards, navigation, modals, typography, layout
+- 🔌 Thêm quy tắc `context7-awareness.md` cho tích hợp Context7 MCP
+
+### ⚙️ Tối ưu cài đặt Template (`roo-code-settings-optimized.json`)
+
+- 🧠 **Model Opus 4.6**: giảm context window 244K → 160K (tiết kiệm token, tăng tốc)
+- 🚫 **Tắt streaming** cho Opus (`openAiStreamingEnabled: false`) — ổn định hơn
+- ⏱️ **Rate limit**: `rateLimitSeconds: 0` (không delay giữa các request)
+- 🔄 **Tăng retry**: `consecutiveMistakeLimit: 5` (cho phép nhiều lần thử hơn)
+- ✅ **Auto-approve đầy đủ**: bật read/write ngoài workspace, protected files
+- ⏰ **Timeout auto-approve**: `followupAutoApproveTimeoutMs: 60000` (60 giây)
+- 🔊 **Âm thanh thông báo**: bật `soundEnabled: true`
+- 📁 **Quy tắc thư mục con**: bật `enableSubfolderRules: true`
+- ✨ **Enhance Prompt**: cài đặt custom prompt hoạt động với `${userInput}` + tắt `includeTaskHistoryInEnhance`
+
+### 📝 Cập nhật
+
+- Cập nhật quy tắc dùng chung: `definition-of-done`, `mode-collaboration`, `skill-awareness`
+- Cập nhật tài liệu: `architecture.md`, `getting-started.md`
+- Cập nhật `mcp.json` với cấu hình cho FE Designer
+
+---
+
+## [2.2.0] - 2025-04-11
+
+### 🔧 Tích hợp Ecosystem Patterns & Nâng cao Workflow
+
+- 🧩 Thêm **Complexity Decision Tree** vào `reasoning-optimization.md` — phân loại task tự động
+- ✅ Thêm **Pre-Switch Verification** checklist vào `mode-collaboration.md` — kiểm tra trước khi chuyển mode
+- 📊 Thêm **Observability bullets** vào `core-principles.md` — ghi log quyết định, ghi nhận lỗi
+- 🔄 Thêm **Step 0 context restoration** vào `continuous-learning` skill — khôi phục ngữ cảnh từ phiên trước
+- 📐 Thêm **Source-of-Truth Separation** vào `architecture.md` — tách biệt nguồn dữ liệu tin cậy
+- 🔗 Thêm **cross-reference indexing ↔ code-review-graph** vào `development-workflow.md`
+
+### 📝 Cập nhật
+
+- Cập nhật `GLOBAL_SKILL_MAP` count lên 29 trong tests
+- Nâng cao `.gitignore`, `.rooignore`, `coding-standards`, `context-budget`, `lint-and-validate`
+- Cập nhật installer, README, tài liệu getting-started
+- Thêm **Scope Discipline** vào `core-principles.md` — chống scope creep
+- Thêm **Phase Gate Enforcement** vào `development-workflow.md` — kiểm soát chất lượng từng giai đoạn
+
+---
 
 ## [2.1.0] - 2025-04-10
 
-### Added
-- **Code Knowledge Graph integration** via [code-review-graph](https://github.com/tirth8205/code-review-graph) MCP server
-- MCP config entry for `code-review-graph` in `templates/mcp.json` (4 MCP servers total)
-- Global rule: `code-graph-awareness.md` — conditional graph tool usage, token-efficient workflow, blast-radius protocol
-- Mode-specific rules: `graph-assisted-coding.md`, `graph-assisted-review.md`, `graph-assisted-debugging.md`, `graph-assisted-architecture.md`
-- 3 new global skills: `code-graph-build`, `code-graph-review`, `code-graph-impact` (29 skills total)
-- Analysis report: `docs/analysis-code-graph-tools.md` comparing code-review-graph vs GitNexus
+### 🧠 Thêm mới — Tích hợp Code Knowledge Graph
 
-### Changed
-- `skill-awareness.md` updated with graph skills and related rules references
-- `bin/install.js` fileMap extended with 5 graph rule entries
-- `lib/installer.js` GLOBAL_SKILL_MAP extended with 3 graph skills
-- `README.md` updated: skills 26→29, MCP servers 3→4, rules 19→24
-- `docs/architecture.md` updated with graph layer diagram, MCP tools layer, and section 7
+- **Tích hợp Code Knowledge Graph** qua MCP server [code-review-graph](https://github.com/tirth8205/code-review-graph)
+- Cấu hình MCP cho `code-review-graph` trong `templates/mcp.json` (tổng 4 MCP servers)
+- Quy tắc toàn cục: `code-graph-awareness.md` — sử dụng graph tool có điều kiện, workflow tiết kiệm token, giao thức blast-radius
+- Quy tắc theo mode: `graph-assisted-coding.md`, `graph-assisted-review.md`, `graph-assisted-debugging.md`, `graph-assisted-architecture.md`
+- 3 skills toàn cục mới: `code-graph-build`, `code-graph-review`, `code-graph-impact` (tổng 29 skills)
+- Báo cáo phân tích: `docs/analysis-code-graph-tools.md` so sánh code-review-graph vs GitNexus
+
+### 📝 Cập nhật
+
+- `skill-awareness.md` cập nhật với graph skills và tham chiếu quy tắc liên quan
+- `bin/install.js` mở rộng fileMap thêm 5 mục graph rule
+- `lib/installer.js` mở rộng GLOBAL_SKILL_MAP thêm 3 graph skills
+- `README.md` cập nhật: skills 26→29, MCP servers 3→4, rules 19→24
+- `docs/architecture.md` cập nhật sơ đồ graph layer, MCP tools layer, và phần 7
+
+---
 
 ## [2.0.0] - 2025-04-09
 
-### Breaking Changes
-- MCP config (`templates/mcp.json`) now uses placeholder strings instead of `${VAR}` syntax
+### ⚠️ Thay đổi không tương thích (Breaking Changes)
+
+- Cấu hình MCP (`templates/mcp.json`) chuyển sang dùng chuỗi placeholder thay vì cú pháp `${VAR}`
   - `${GITHUB_PERSONAL_ACCESS_TOKEN}` → `"paste-your-github-token-here"`
   - `${DATABASE_URL}` → `"postgresql://user:password@localhost:5432/dbname"`
   - `${WORKSPACE_PATH}` → `"/path/to/your/workspace"`
 
-### Added
-- `--version` / `-v` flag to print package version
-- `--clean` flag to detect and remove orphan global skills from `~/.roo/`
-- Error handling with user-friendly messages for permission errors (EACCES/EPERM)
-- `lib/installer.js` — extracted reusable functions for testability
-- Unit tests (`tests/installer.test.js`) and integration tests (`tests/cli.test.js`)
-- `CHANGELOG.md` (this file)
-- `CONTRIBUTING.md` with development workflow and PR guidelines
-- `docs/migration-from-ps1.md` migration guide from PowerShell v1 to Node.js v2
-- GitHub Actions CI/CD pipeline (`.github/workflows/ci.yml`) — tests on Node 14/18/20, lint rules & skills
-- `engines` field in package.json requiring Node >= 14.14.0
+### ✨ Thêm mới
 
-### Fixed
-- MCP config `${VAR}` syntax was not expanded by RooCode — replaced with placeholder strings
-- Env var name mismatch between installer output and mcp.json
-- README incorrectly stated "8 global rules" (actually 9) and "11 rule files" (actually 13)
-- Installer now gracefully handles file permission errors instead of crashing
+- Flag `--version` / `-v` để in phiên bản package
+- Flag `--clean` để phát hiện và xóa orphan global skills từ `~/.roo/`
+- Xử lý lỗi thân thiện cho lỗi quyền truy cập (EACCES/EPERM)
+- `lib/installer.js` — tách hàm tái sử dụng để dễ test
+- Unit tests (`tests/installer.test.js`) và integration tests (`tests/cli.test.js`)
+- `CHANGELOG.md` (file này)
+- `CONTRIBUTING.md` với hướng dẫn workflow phát triển và PR
+- `docs/migration-from-ps1.md` hướng dẫn chuyển đổi từ PowerShell v1 sang Node.js v2
+- GitHub Actions CI/CD pipeline (`.github/workflows/ci.yml`) — test trên Node 14/18/20, lint rules & skills
+- Thêm trường `engines` trong package.json yêu cầu Node >= 14.14.0
 
-### Changed
-- Version bumped from 1.0.0 to 2.0.0 (breaking MCP config format)
-- Refactored installer: helper functions extracted to `lib/installer.js`
+### 🐛 Sửa lỗi
+
+- Cú pháp `${VAR}` trong MCP config không được RooCode mở rộng — đã thay bằng chuỗi placeholder
+- Tên biến môi trường không khớp giữa output installer và mcp.json
+- README ghi sai "8 global rules" (thực tế 9) và "11 rule files" (thực tế 13)
+- Installer giờ xử lý lỗi quyền file một cách nhẹ nhàng thay vì crash
+
+### 📝 Cập nhật
+
+- Nâng version từ 1.0.0 lên 2.0.0 (thay đổi format MCP config)
+- Tái cấu trúc installer: tách hàm helper vào `lib/installer.js`
+
+---
 
 ## [1.0.0] - 2025-03-15
 
-### Added
-- Initial release
-- Project settings installer (rules, modes, skills, .rooignore)
-- `--global-skills` flag for 26 curated global skills
-- `--mcp` flag for MCP server config
-- `--force` flag to overwrite existing files
-- 9 global rules, 4 mode-specific rules, 7 project skills
-- 13 custom modes with optimized settings
+### 🚀 Phát hành đầu tiên
+
+- Phát hành lần đầu
+- Trình cài đặt project settings (rules, modes, skills, .rooignore)
+- Flag `--global-skills` cho 26 skills toàn cục được tuyển chọn
+- Flag `--mcp` cho cấu hình MCP server
+- Flag `--force` để ghi đè file đã tồn tại
+- 9 quy tắc toàn cục, 4 quy tắc theo mode, 7 project skills
+- 13 chế độ tùy chỉnh với cài đặt tối ưu
