@@ -33,6 +33,17 @@ A single, authoritative checklist defining when a task can be considered COMPLET
 - [ ] Original issue verified fixed with evidence
 - [ ] No regressions introduced by the fix
 
+### 🎨 FE Designer Mode
+- [ ] Design system analyzed (existing tokens, spacing, colors detected)
+- [ ] Visual design follows 8-point grid and typography scale
+- [ ] Color contrast meets WCAG 2.1 AA (4.5:1 text, 3:1 large text)
+- [ ] Responsive breakpoints implemented (mobile-first)
+- [ ] No magic numbers — all values use design tokens or documented scale
+- [ ] Self-critique completed (visual hierarchy, CTA clarity, cognitive load, spacing consistency)
+- [ ] Accessibility checked (semantic HTML, ARIA patterns, keyboard nav, focus management)
+- [ ] Component styling uses composition over inheritance
+- [ ] Handoff notes prepared for Code mode if component logic changes needed
+
 ### 🪃 Orchestrator Mode
 - [ ] All subtask phases completed and verified
 - [ ] `update_todo_list` shows all items checked

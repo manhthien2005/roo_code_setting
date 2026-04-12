@@ -20,6 +20,17 @@
 ### Mode-Specific Global Skills
 > 20 additional mode-specific skills are installed to `~/.roo/skills-{mode}/`. The agent discovers them automatically via SKILL.md frontmatter when the matching mode is active. See `skills-registry.md` or `.roo/rules/skill-awareness.md` in the project root for the full inventory.
 
+### 🎨 FE Designer Skills (`skills-fe-designer/`)
+
+| Skill | Trigger Condition | Mandatory? | Execution Order |
+|-------|------------------|------------|-----------------|
+| `component-design` | Auto-triggers when creating new component styles or styling existing components | ✅ YES — for component tasks | On demand |
+| `design-system-audit` | Auto-triggers when modifying shared styles, tokens, or theme config files | ✅ YES — for token/theme tasks | On demand |
+| `accessibility-checker` | Runs before EVERY `attempt_completion` — verifies WCAG 2.1 AA compliance | ✅ YES — always | **1st** before completion |
+| `ui-critique` | Runs before EVERY `attempt_completion` — visual hierarchy + UX critique | ✅ YES — always | **2nd** before completion |
+
+**Ordering rule**: `accessibility-checker` MUST complete before `ui-critique` starts. Both MUST complete before `attempt_completion`.
+
 ## Project Skills (installed to <workspace>/.roo/)
 
 | Skill | Trigger Condition | Mandatory? |

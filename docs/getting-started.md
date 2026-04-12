@@ -137,6 +137,7 @@ npx github:manhthien2005/roo_code_setting --mcp
 | **GitHub** | `@modelcontextprotocol/server-github` | Create repos, issues, PRs, read files, search code |
 | **PostgreSQL** | `@modelcontextprotocol/server-postgres` | Query databases, inspect schemas |
 | **FileSystem** | `@modelcontextprotocol/server-filesystem` | Read/write files outside workspace |
+| **Context7** | `@upstash/context7-mcp` | Up-to-date docs for 9000+ libraries, reduces hallucination (free, no API key) |
 
 ### Required environment variables
 

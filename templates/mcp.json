@@ -30,6 +30,11 @@
       "$comment": "Knowledge graph for token-efficient code reviews. Requires: pip install code-review-graph (Python 3.10+). Run 'code-review-graph build' in your project first. Provides 22 MCP tools for blast-radius analysis, impact detection, architecture overview, and more. See: https://github.com/tirth8205/code-review-graph",
       "command": "uvx",
       "args": ["code-review-graph", "serve"]
+    },
+    "context7": {
+      "$comment": "Up-to-date documentation for 9000+ libraries. Provides resolve-library-id and get-library-docs tools to pull version-specific docs into AI context, reducing hallucination. Free, no API key needed. See: https://github.com/upstash/context7",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
     }
   }
 }

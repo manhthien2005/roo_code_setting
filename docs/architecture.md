@@ -26,7 +26,7 @@ flowchart LR
 | Modes | Role definition, scope, tool groups, escalation paths | [`templates/.roomodes`](../templates/.roomodes) |
 | Rules | Always-on operating constraints and workflows | [`templates/.roo/rules/`](../templates/.roo/) |
 | Skills | Situational instructions triggered when a matching need is detected | [`templates/.roo/skills-registry.md`](../templates/.roo/skills-registry.md) |
-| MCP Tools | External tool servers providing specialized capabilities (graph, DB, filesystem) | [`templates/mcp.json`](../templates/mcp.json) |
+| MCP Tools | External tool servers providing specialized capabilities (graph, DB, filesystem, docs) | [`templates/mcp.json`](../templates/mcp.json) |
 
 ## 2. Override precedence
 
@@ -101,10 +101,10 @@ Important runtime controls from [`templates/roo-code-settings-optimized.json`](.
 templates/
 ├── .roomodes                         # Workspace mode definitions copied by installer
 ├── .rooignore                        # Context filtering rules copied by installer
-├── mcp.json                          # MCP server configuration (4 servers)
+├── mcp.json                          # MCP server configuration (5 servers)
 ├── .roo/
 │   ├── skills-registry.md            # Installed skill inventory
-│   ├── rules/                        # 9 global rules (incl. code-graph-awareness)
+│   ├── rules/                        # 10 global rules (incl. code-graph-awareness, context7-awareness)
 │   ├── rules-architect/              # Architect-only rules (incl. graph-assisted)
 │   ├── rules-code/                   # Code-only rules (incl. graph-assisted)
 │   ├── rules-code-review/            # Code-review-only rules (incl. graph-assisted)
@@ -175,7 +175,7 @@ Target: **≤5 graph tool calls** and **≤800 tokens** of graph context per tas
 - Modes define **who the agent is** and **what tools it may use**.
 - Rules define **guardrails and workflow**.
 - Skills inject **task-specific playbooks** only when relevant.
-- MCP tools extend the agent's capabilities with **external servers** (knowledge graph, database, filesystem, GitHub).
+- MCP tools extend the agent's capabilities with **external servers** (knowledge graph, database, filesystem, GitHub, Context7 docs).
 - Graph-awareness rules teach the agent **when and how** to leverage the knowledge graph — conditionally, only when available.
 
 Use [Getting Started](./getting-started.md) for setup, [Troubleshooting](./troubleshooting.md) when behavior is off, and [Quick Reference](./quick-reference.md) for daily lookup.

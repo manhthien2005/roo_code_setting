@@ -8,6 +8,10 @@
 | Code | Debug | Bug encountered, root cause unclear |
 | Any | Ask | Need clarification from user |
 | Code | Orchestrator | Task spans multiple domains or modes |
+| Any | FE Designer | UI styling, design system, accessibility, visual design needed |
+| FE Designer | Code | Component logic, state management, data fetching needed |
+| Code | FE Designer | Styling architecture, design tokens, visual consistency review needed |
+| Architect | FE Designer | UI/UX implementation of approved design plan |
 
 ## Handoff Format
 When switching modes via `new_task` or `switch_mode`, pass structured context:
@@ -18,6 +22,8 @@ When switching modes via `new_task` or `switch_mode`, pass structured context:
 - **Architect → Code**: Pass approved plan, affected files, implementation order. Expect: working code.
 - **Code → Debug**: Pass error message, stack trace, steps to reproduce, what was tried. Expect: root cause.
 - **Any → Ask**: Pass specific question with 2-4 suggested answers. Expect: user's decision.
+- **Any → FE Designer**: Pass component name, current styling approach, design system context, visual requirements. Expect: styled components, design tokens, accessibility-compliant markup.
+- **FE Designer → Code**: Pass handoff notes with styling hooks, token references, semantic structure. Expect: component logic implementation preserving design intent.
 
 ## Pre-Switch Verification (Medium+ tasks only)
 Before switching modes, verify:
